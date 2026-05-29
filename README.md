@@ -1,0 +1,1 @@
+This registry operates as an independent, publicly accessible record of AI-related patient safety incidents in UK healthcare. It complements — not replaces — LFPSE, MHRA Yellow Card, and trust-level incident reporting.
