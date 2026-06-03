@@ -3,290 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Healthcare AI Safety Registry · v0.5</title>
+<title>UK Healthcare AI Safety Registry · v0.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#042C53;--navy2:#0A3060;--amber:#EF9F27;
-  --w:#fff;--g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;
-  --g400:#9ca3af;--g500:#6b7280;--g600:#4b5563;--g700:#374151;--g900:#111827;
-  --red50:#fef2f2;--red100:#fee2e2;--red700:#b91c1c;
-  --or100:#ffedd5;--or700:#c2410c;
-  --ye100:#fef9c3;--ye700:#a16207;
-  --bl50:#eff6ff;--bl100:#dbeafe;--bl700:#1d4ed8;
-  --gr50:#f0fdf4;--gr100:#dcfce7;--gr700:#15803d;
-  --pu100:#ede9fe;--pu700:#6d28d9;
-  /* Emil: strong custom curves — never use built-in easings for UI */
-  --eout:cubic-bezier(0.23,1,0.32,1);   /* entering elements — starts fast */
-  --eio:cubic-bezier(0.77,0,0.175,1);   /* on-screen morphing */
-  --ein:cubic-bezier(0.55,0,1,0.45);    /* exit only */
-  --edrawer:cubic-bezier(0.32,0.72,0,1);
+  /* Browserbase-inspired warm palette */
+  --bg:#F3EDE0;
+  --surface:#FAF6EC;
+  --surface-2:#F7F2E4;
+  --ink:#1A1611;
+  --ink-2:#3D362C;
+  --muted:#7A6E59;
+  --subtle:#A89A82;
+  --border:#E0D6BE;
+  --border-2:#CFC3A6;
+  --terracotta:#C8651E;
+  --terracotta-2:#A8501A;
+  --terracotta-soft:#F0D9C2;
+  --terracotta-tint:#FAEDDF;
+  --olive:#6B6D3F;
+  --rust:#9E3B1F;
+  --rust-soft:#F2DDD2;
+  --amber-mark:#D89540;
+  --amber-tint:#FAEDD0;
+  --green:#4F6B3C;
+  --green-soft:#E4ECCC;
+  --blue:#3A5A7A;
+  --blue-soft:#D8E2EE;
+  --purple:#6B4F7A;
+  --purple-soft:#E4DAEE;
+
   --r4:4px;--r6:6px;--r10:10px;
+
+  --eout:cubic-bezier(0.23,1,0.32,1);
+  --eio:cubic-bezier(0.77,0,0.175,1);
+  --ein:cubic-bezier(0.55,0,1,0.45);
+
+  --fs:'Instrument Serif','New York','Iowan Old Style','Palatino',Georgia,serif;
+  --fb:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --fm:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;font-size:14px;color:var(--g900);background:var(--g50)}
+html,body{height:100%;overflow:hidden;font-family:var(--fb);font-size:14px;color:var(--ink);background:var(--bg);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;letter-spacing:-0.005em}
+
 #shell{display:flex;flex-direction:column;height:100vh;overflow:hidden}
-#hdr{background:var(--navy);padding:11px 20px;border-bottom:3px solid var(--amber);flex-shrink:0}
-#statsbar{background:var(--navy2);flex-shrink:0}
-#navbarnav{background:var(--w);border-bottom:1px solid var(--g200);flex-shrink:0;overflow-x:auto}
-#content{flex:1;overflow-y:auto;background:var(--g50)}
+#hdr{background:var(--bg);border-bottom:1px solid var(--border);flex-shrink:0;padding:20px 32px}
+#statsbar{background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+#navbar{background:var(--bg);border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto}
+#content{flex:1;overflow-y:auto;background:var(--bg)}
 
-/* Header */
-.hi{display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px}
-.lb{background:var(--amber);color:var(--navy);width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0}
-.ln{color:var(--w);font-size:14px;font-weight:600}
-.ls{color:rgba(255,255,255,.4);font-size:11px;margin-top:1px}
-.proto{background:rgba(239,159,39,.12);border:1px solid rgba(239,159,39,.35);color:var(--amber);padding:3px 9px;border-radius:20px;font-size:10px;font-weight:500;letter-spacing:.04em}
+/* HEADER */
+.hi{display:flex;align-items:flex-start;justify-content:space-between;max-width:1180px;margin:0 auto;gap:24px}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand-eyebrow{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:2px}
+.brand-title{font-family:var(--fs);font-size:30px;line-height:1;color:var(--ink);font-weight:400;letter-spacing:-0.02em}
+.brand-title em{color:var(--terracotta);font-style:italic}
+.brand-sub{font-size:12px;color:var(--muted);margin-top:6px;max-width:480px;line-height:1.5}
+.brand-meta{text-align:right;font-family:var(--fm);font-size:10px;color:var(--muted);line-height:1.7}
+.brand-meta strong{color:var(--ink);font-weight:500}
+.proto-tag{display:inline-block;background:var(--terracotta);color:var(--surface);font-family:var(--fm);font-size:10px;padding:3px 8px;border-radius:var(--r4);letter-spacing:0.04em;margin-top:6px;font-weight:500}
 
-/* Stats — countup handled by JS */
-.sg{display:grid;grid-template-columns:repeat(6,1fr)}
-.st{padding:8px 4px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
-.st:last-child{border-right:none}
-.stn{font-size:17px;font-weight:600;color:var(--amber);line-height:1.1;font-variant-numeric:tabular-nums}
-.stl{font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em;margin-top:1px}
+/* STATS */
+.sg{display:grid;grid-template-columns:repeat(6,1fr);max-width:1180px;margin:0 auto;padding:0 32px}
+.stat{padding:14px 16px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-l{font-family:var(--fm);font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:4px}
+.stat-n{font-family:var(--fs);font-size:24px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;font-weight:400}
+.stat-n.terra{color:var(--terracotta)}
+.stat-n.warn{color:var(--rust)}
 
-/* Nav — tabs are hovered often: ease not ease-out, colour only */
-.ni{display:flex;min-width:max-content}
-.tab{
-  padding:10px 12px;font-size:12px;font-weight:400;color:var(--g500);
-  background:none;border:none;border-bottom:2.5px solid transparent;
-  cursor:pointer;white-space:nowrap;font-family:inherit;
-  /* colour transitions: ease, not ease-out — less punchy for frequent hover */
-  transition:color 140ms ease,border-color 140ms ease;
-}
-.tab:hover{color:var(--g900)}
-/* Active press on tabs — sub-100ms, instant feeling */
-.tab:active{transform:scale(0.97);transition:transform 80ms var(--eout),color 140ms ease,border-color 140ms ease}
-.tab.on{color:var(--navy);font-weight:600;border-bottom-color:var(--amber)}
-.adot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red700);margin-right:4px;vertical-align:middle;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+/* NAV */
+.ni{display:flex;max-width:1180px;margin:0 auto;padding:0 32px;gap:2px}
+.tab{padding:11px 14px;font-family:var(--fb);font-size:12px;font-weight:400;color:var(--muted);background:none;border:none;border-bottom:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:color 150ms ease,border-color 150ms ease;letter-spacing:-0.005em}
+.tab:hover{color:var(--ink)}
+.tab:active{transform:scale(0.98);transition:transform 80ms var(--eout),color 150ms ease}
+.tab.on{color:var(--ink);font-weight:500;border-bottom-color:var(--terracotta)}
+.tab-ico{font-family:var(--fm);font-size:11px;margin-right:4px;color:var(--terracotta);opacity:0.7}
+.tab.on .tab-ico{opacity:1}
+.adot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--rust);margin-right:5px;vertical-align:middle;animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-/* Pages — enter with opacity+translateY; nothing appears from nowhere */
+/* PAGE */
 .page{display:none}
-.page.on{
-  display:block;
-  animation:pageIn 220ms var(--eout) both;
-}
-@keyframes pageIn{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.page-inner{max-width:1060px;margin:0 auto;padding:20px}
+.page.on{display:block;animation:pageIn 280ms var(--eout) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.page-inner{max-width:1180px;margin:0 auto;padding:28px 32px}
 
-/* Shared */
-.pt{font-size:15px;font-weight:600;color:var(--g900);margin-bottom:3px}
-.ps{font-size:13px;color:var(--g500);margin-bottom:16px}
-.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
-.st2{font-size:14px;font-weight:600;color:var(--g900)}
-.sl2{font-size:12px;color:var(--bl700);background:none;border:none;cursor:pointer;font-family:inherit;
-  transition:opacity 120ms ease}
-.sl2:hover{opacity:.7}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.card{background:var(--w);border:1px solid var(--g200);border-radius:var(--r10);padding:14px;
-  box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.ct{font-size:13px;font-weight:600;color:var(--g900);margin-bottom:11px}
+/* SECTION HEADER */
+.section{margin-bottom:32px}
+.section:last-child{margin-bottom:0}
+.eyebrow{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.eyebrow-bar{width:18px;height:1px;background:var(--terracotta);display:inline-block}
+.headline{font-family:var(--fs);font-size:24px;line-height:1.15;color:var(--ink);font-weight:400;letter-spacing:-0.015em;margin-bottom:6px}
+.headline em{color:var(--terracotta);font-style:italic}
+.lede{font-size:13px;color:var(--muted);line-height:1.6;max-width:680px}
 
-/* Alert banner */
-.ab{background:#fffbeb;border:1px solid #f59e0b;border-radius:var(--r10);padding:11px 13px;display:flex;gap:9px;margin-bottom:16px}
-.abt{font-size:13px;color:#92400e;line-height:1.5}
-.abt strong{font-weight:600}
-.alk{color:#b45309;text-decoration:underline;background:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;
-  transition:opacity 120ms ease}
-.alk:hover{opacity:.7}
+/* ALERT */
+.alert-row{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border:1px solid var(--rust);background:var(--rust-soft);border-radius:var(--r10);margin-bottom:22px}
+.alert-mark{font-family:var(--fm);font-size:11px;color:var(--rust);font-weight:500;letter-spacing:0.04em;flex-shrink:0;margin-top:1px}
+.alert-text{font-size:13px;color:var(--ink-2);line-height:1.55}
+.alert-text strong{color:var(--ink);font-weight:600}
+.alert-link{color:var(--rust);text-decoration:underline;background:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;padding:0;transition:opacity 120ms ease}
+.alert-link:hover{opacity:0.65}
 
-/* Quick-report bar */
-.qr{background:var(--navy);border-radius:var(--r10);padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.qr-label{color:rgba(255,255,255,.7);font-size:13px;font-weight:500;flex-shrink:0}
-.qr-btns{display:flex;gap:7px;flex-wrap:wrap;flex:1}
-/* Quick-report buttons: background ease, transform sub-100ms */
-.qrb{
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-  color:var(--w);font-size:12px;font-weight:500;padding:6px 12px;
-  border-radius:var(--r6);cursor:pointer;font-family:inherit;
-  transition:background 140ms ease,transform 80ms var(--eout),border-color 140ms ease;
-}
+/* QUICK REPORT — terminal-inspired */
+.qr{background:var(--ink);border-radius:var(--r10);padding:16px 18px;margin-bottom:24px;font-family:var(--fm)}
+.qr-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.qr-prompt{color:var(--terracotta);font-size:11px}
+.qr-label{color:rgba(250,246,236,0.85);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500}
+.qr-cmd{color:rgba(250,246,236,0.55);font-size:11px;margin-left:auto;font-style:italic}
+.qr-btns{display:flex;gap:6px;flex-wrap:wrap}
+.qrb{background:rgba(250,246,236,0.06);border:1px solid rgba(250,246,236,0.14);color:rgba(250,246,236,0.92);font-family:var(--fb);font-size:12px;font-weight:500;padding:7px 12px;border-radius:var(--r4);cursor:pointer;transition:background 140ms ease,border-color 140ms ease,transform 80ms var(--eout)}
 .qrb:active{transform:scale(0.96)}
-.qrb.danger{background:rgba(239,68,68,.2);border-color:rgba(239,68,68,.35);color:#fca5a5}
-@media(hover:hover) and (pointer:fine){
-  .qrb:hover{background:rgba(255,255,255,.18)}
-  .qrb.danger:hover{background:rgba(239,68,68,.32)}
-}
-.qr-note{font-size:11px;color:rgba(255,255,255,.35);flex-basis:100%}
+.qrb.danger{background:rgba(158,59,31,0.18);border-color:rgba(158,59,31,0.45);color:#F4C5B0}
+@media(hover:hover) and (pointer:fine){.qrb:hover{background:rgba(250,246,236,0.12);border-color:rgba(250,246,236,0.22)}.qrb.danger:hover{background:rgba(158,59,31,0.28)}}
+.qr-note{color:rgba(250,246,236,0.4);font-size:10px;margin-top:10px;font-family:var(--fb);font-style:italic}
 
-/* Toast — asymmetric: enter 200ms ease-out, exit 140ms ease-in */
-.toast{
-  position:fixed;bottom:24px;right:24px;
-  background:var(--g900);color:var(--w);
-  padding:11px 16px;border-radius:var(--r10);font-size:13px;
-  box-shadow:0 8px 24px rgba(0,0,0,.18);z-index:999;
-  opacity:0;transform:translateY(8px) scale(0.97);
-  /* Enter: ease-out 200ms */
-  transition:opacity 200ms var(--eout),transform 200ms var(--eout);
-  pointer-events:none;
-}
-.toast.show{opacity:1;transform:translateY(0) scale(1)}
-/* Exit handled by removing .show — browser uses same transition */
-/* But we want exit faster: override via JS class */
-.toast.hide{
-  opacity:0;transform:translateY(4px) scale(0.98);
-  transition:opacity 140ms var(--ein),transform 140ms var(--ein);
-}
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.split{display:grid;grid-template-columns:2fr 1fr;gap:24px}
 
-/* Incident cards */
-.inc{
-  background:var(--w);border:1px solid var(--g200);
-  border-radius:var(--r10);padding:13px;margin-bottom:9px;
-  box-shadow:0 1px 3px rgba(0,0,0,.05);
-}
-@media(hover:hover) and (pointer:fine){
-  .inc{transition:box-shadow 180ms ease,border-color 180ms ease}
-  .inc:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);border-color:var(--g300)}
-}
-.im{display:flex;align-items:flex-start;justify-content:space-between;gap:7px;margin-bottom:5px}
-.iid{font-family:'SF Mono','Fira Code',monospace;font-size:10px;color:var(--g400)}
-.iti{font-size:13px;font-weight:500;color:var(--g900);line-height:1.4;margin-bottom:9px}
-.ifoot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px}
-.chips{display:flex;gap:4px;flex-wrap:wrap}
-.chip{font-size:11px;background:var(--g100);color:var(--g500);padding:2px 6px;border-radius:var(--r4);border:1px solid var(--g200)}
-.tag{font-size:11px;background:var(--bl50);color:var(--bl700);padding:2px 6px;border-radius:20px;border:1px solid var(--bl100)}
-.otag{font-size:11px;background:var(--gr50);color:var(--gr700);padding:2px 6px;border-radius:20px;border:1px solid var(--gr100)}
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);padding:18px}
+.card-eyebrow{font-family:var(--fm);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:10px}
+.card-title{font-family:var(--fs);font-size:17px;line-height:1.2;color:var(--ink);font-weight:400;margin-bottom:14px;letter-spacing:-0.01em}
 
-/* Severity badges */
-.badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:var(--r4);white-space:nowrap}
-.bd-d,.bd-s{background:var(--red100);color:var(--red700)}
-.bd-m{background:var(--or100);color:var(--or700)}
-.bd-l{background:var(--ye100);color:var(--ye700)}
-.bd-n{background:var(--bl100);color:var(--bl700)}
-.bd-z{background:var(--gr100);color:var(--gr700)}
+/* INCIDENT — article-style listing */
+.inc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);padding:18px 20px;margin-bottom:12px;transition:border-color 180ms ease,background 180ms ease}
+@media(hover:hover) and (pointer:fine){.inc:hover{border-color:var(--border-2);background:var(--surface-2)}}
+.inc-meta-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.inc-id{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.02em}
+.inc-id::before{content:'›';margin-right:6px;color:var(--terracotta)}
+.inc-date{font-family:var(--fm);font-size:10px;color:var(--muted)}
+.inc-sep{color:var(--subtle);font-size:10px}
+.inc-title{font-family:var(--fs);font-size:18px;line-height:1.3;color:var(--ink);font-weight:400;margin-bottom:12px;letter-spacing:-0.01em}
+.inc-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tags{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.chip{font-family:var(--fb);font-size:11px;background:transparent;color:var(--muted);padding:2px 8px;border-radius:var(--r4);border:1px solid var(--border-2)}
+.tag{font-family:var(--fb);font-size:11px;background:var(--terracotta-tint);color:var(--terracotta-2);padding:2px 8px;border-radius:var(--r4);border:1px solid var(--terracotta-soft);font-weight:500}
+.otag{font-family:var(--fm);font-size:10px;background:var(--green-soft);color:var(--green);padding:2px 8px;border-radius:var(--r4);font-weight:500;letter-spacing:0.02em;text-transform:uppercase}
 
-/* Expand button */
-.xb{
-  font-size:11px;color:var(--g500);background:none;
-  border:1px solid var(--g200);border-radius:var(--r4);
-  padding:3px 9px;cursor:pointer;font-family:inherit;
-  transition:background 120ms ease,color 120ms ease,border-color 120ms ease,transform 80ms var(--eout);
-}
+/* BADGES */
+.badge{font-family:var(--fb);font-size:11px;font-weight:500;padding:2px 9px;border-radius:var(--r4);white-space:nowrap;letter-spacing:-0.005em}
+.bd-d,.bd-s{background:var(--rust-soft);color:var(--rust)}
+.bd-m{background:var(--terracotta-soft);color:var(--terracotta-2)}
+.bd-l{background:var(--amber-tint);color:var(--amber-mark)}
+.bd-n{background:var(--blue-soft);color:var(--blue)}
+.bd-z{background:var(--green-soft);color:var(--green)}
+
+/* EXPAND BUTTON */
+.xb{font-family:var(--fb);font-size:11px;color:var(--ink-2);background:transparent;border:1px solid var(--border-2);border-radius:var(--r4);padding:4px 10px;cursor:pointer;transition:background 120ms ease,color 120ms ease,border-color 120ms ease,transform 80ms var(--eout)}
 .xb:active{transform:scale(0.96)}
-@media(hover:hover) and (pointer:fine){
-  .xb:hover{background:var(--g50);color:var(--g900);border-color:var(--g300)}
-}
+@media(hover:hover) and (pointer:fine){.xb:hover{background:var(--ink);color:var(--surface);border-color:var(--ink)}}
 
-/* Detail expand: grid trick — animates to exact content height, no lag */
-.det{display:grid;grid-template-rows:0fr;transition:grid-template-rows 240ms var(--eout)}
+/* DETAIL */
+.det{display:grid;grid-template-rows:0fr;transition:grid-template-rows 260ms var(--eout)}
 .det.on{grid-template-rows:1fr}
 .det-inner{overflow:hidden}
-.di{border-top:1px solid var(--g100);margin-top:9px;padding-top:11px}
-.dl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--g400);margin-bottom:4px}
-.db{font-size:12px;color:var(--g600);line-height:1.65;margin-bottom:10px}
-.db ul{padding-left:15px}.db li{margin-bottom:2px}
-.learn{background:var(--gr50);border:1px solid var(--gr100);border-radius:var(--r6);padding:10px 12px;margin-bottom:10px}
-.learn .dl{color:var(--gr700)}.learn .db{color:var(--gr700);margin-bottom:0}
-.outbox{background:var(--pu100);border:1px solid #c4b5fd;border-radius:var(--r6);padding:9px 12px;margin-top:10px}
-.outbox .dl{color:var(--pu700)}.outbox .db{color:var(--pu700);margin-bottom:0}
+.di{border-top:1px solid var(--border);margin-top:14px;padding-top:14px}
+.dl{font-family:var(--fm);font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px}
+.db{font-family:var(--fb);font-size:13px;color:var(--ink-2);line-height:1.7;margin-bottom:14px}
+.db ul{padding-left:18px;margin-top:4px}.db li{margin-bottom:3px}
 
-/* Filter */
-.fr{display:flex;gap:7px;margin-bottom:11px;flex-wrap:wrap}
-.fr input,.fr select{
-  font-size:12px;font-family:inherit;
-  border:1px solid var(--g200);border-radius:var(--r6);
-  padding:6px 9px;background:var(--w);outline:none;
-  transition:border-color 150ms ease,box-shadow 150ms ease;
-}
-.fr input{flex:1;min-width:140px}
-.fr select{min-width:140px}
-.fr input:focus,.fr select:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(4,44,83,.08)}
-.rc2{font-size:12px;color:var(--g400);margin-bottom:9px}
+/* MIT TAXONOMY */
+.taxo{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r6);padding:12px 14px;margin-bottom:14px}
+.taxo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:10px}
+.taxo-item .dl{margin-bottom:3px}
+.taxo-val{font-family:var(--fb);font-size:12px;color:var(--ink);font-weight:500}
+.taxo-domain{padding-top:10px;border-top:1px solid var(--border);font-family:var(--fb);font-size:12px;color:var(--ink-2)}
+.taxo-domain strong{font-weight:600;color:var(--terracotta-2)}
 
-/* Charts */
-.bw{display:flex;gap:3px;align-items:flex-end;height:100px;padding-bottom:18px;position:relative}
-.bax{position:absolute;bottom:18px;left:0;right:0;height:1px;background:var(--g200)}
+.learn{background:var(--green-soft);border:1px solid #C6D6A5;border-radius:var(--r6);padding:12px 14px;margin-bottom:10px}
+.learn .dl{color:var(--green)}
+.learn .db{color:#3C4F2C;margin-bottom:0;font-size:13px}
+
+.outbox{background:var(--purple-soft);border:1px solid #C8B5D2;border-radius:var(--r6);padding:12px 14px;margin-top:10px}
+.outbox .dl{color:var(--purple)}
+.outbox .db{color:#4A3858;margin-bottom:0}
+
+/* FILTER */
+.fr{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.fr input,.fr select{font-family:var(--fb);font-size:12px;border:1px solid var(--border-2);border-radius:var(--r6);padding:7px 11px;background:var(--surface);color:var(--ink);outline:none;transition:border-color 150ms ease,box-shadow 150ms ease}
+.fr input{flex:1;min-width:160px}
+.fr select{min-width:150px}
+.fr input::placeholder{color:var(--subtle)}
+.fr input:focus,.fr select:focus{border-color:var(--terracotta);box-shadow:0 0 0 3px rgba(200,101,30,0.12)}
+.rcount{font-family:var(--fm);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
+
+/* CHARTS */
+.bw{display:flex;gap:4px;align-items:flex-end;height:110px;padding-bottom:20px;position:relative;margin-top:6px}
+.bax{position:absolute;bottom:20px;left:0;right:0;height:1px;background:var(--border)}
 .bc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative}
-.bf{
-  width:100%;background:var(--navy);border-radius:2px 2px 0 0;min-height:2px;
-  opacity:.8;transition:opacity 140ms ease,background 140ms ease;
-  transform-origin:bottom;
-  animation:barGrow 400ms var(--eout) both;
-}
+.bf{width:100%;background:var(--ink);border-radius:2px 2px 0 0;min-height:2px;opacity:0.78;transition:opacity 140ms ease,background 140ms ease;transform-origin:bottom;animation:barGrow 420ms var(--eout) both}
 @keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-@media(hover:hover) and (pointer:fine){.bf:hover{opacity:1;background:var(--amber);cursor:default}}
-.bl2{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--g400);white-space:nowrap}
-.hbr{display:flex;flex-direction:column;gap:8px}
-.hbl{font-size:11px;color:var(--g600);margin-bottom:2px;line-height:1.2}
-.hbt{display:flex;align-items:center;gap:7px}
-.hbg{flex:1;background:var(--g100);border-radius:2px;height:9px;overflow:hidden}
-.hbf{height:100%;background:var(--navy);border-radius:2px;opacity:.8;animation:hbarGrow 500ms var(--eout) both}
-@keyframes hbarGrow{from{width:0!important}to{}}
-.hbv{font-size:11px;color:var(--g400);min-width:24px;text-align:right}
-.srow{display:flex;align-items:center;gap:7px;margin-bottom:6px}
-.sdot{width:10px;height:10px;border-radius:50%;flex-shrink:0;border:1px solid var(--g200)}
-.slbl{font-size:11px;color:var(--g600);flex:1}
-.sbg{flex:2;background:var(--g100);border-radius:2px;height:9px;overflow:hidden}
-.sf2{height:100%;border-radius:2px;animation:hbarGrow 500ms var(--eout) both}
-.sval{font-size:11px;color:var(--g400);min-width:26px;text-align:right}
+@media(hover:hover) and (pointer:fine){.bf:hover{opacity:1;background:var(--terracotta)}}
+.bl2{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:9px;color:var(--muted)}
+.hbr{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.hbl{font-family:var(--fb);font-size:11px;color:var(--ink-2);margin-bottom:3px;display:flex;justify-content:space-between;align-items:center}
+.hbl-v{font-family:var(--fm);color:var(--muted);font-size:10px}
+.hbg{background:var(--border);border-radius:2px;height:8px;overflow:hidden}
+.hbf{height:100%;background:var(--ink);border-radius:2px;opacity:0.78;animation:hbarGrow 520ms var(--eout) both}
+@keyframes hbarGrow{from{width:0!important}}
+.srow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sdot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.slbl{font-size:12px;color:var(--ink-2);flex:1;font-family:var(--fb)}
+.sbg{flex:2;background:var(--border);border-radius:2px;height:8px;overflow:hidden}
+.sf2{height:100%;border-radius:2px;animation:hbarGrow 520ms var(--eout) both}
+.sval{font-family:var(--fm);font-size:11px;color:var(--muted);min-width:32px;text-align:right}
 
-/* Underreporting */
-.urcard{background:var(--w);border:1px solid var(--g200);border-radius:var(--r10);padding:14px;margin-bottom:9px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.urname{font-size:13px;font-weight:600;color:var(--g900);margin-bottom:2px}
-.ursub{font-size:11px;color:var(--g500);margin-bottom:8px}
-.urtrack{display:flex;height:14px;border-radius:var(--r4);overflow:hidden;margin-bottom:6px;background:var(--g100)}
-.urfill{height:100%;background:var(--red700);opacity:.65;transition:width 600ms var(--eout)}
-.urstat{display:flex;gap:14px;flex-wrap:wrap}
-.ursi{font-size:11px;color:var(--g500)}
-.ursi strong{color:var(--g900);font-weight:600}
-.urwarn{font-size:11px;color:var(--red700);margin-top:6px;font-weight:500}
+/* DOMAIN TAXONOMY GRID */
+.dom-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
+.dom-card{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r6);padding:10px 12px}
+.dom-num{font-family:var(--fs);font-size:20px;color:var(--terracotta);line-height:1;font-weight:400}
+.dom-name{font-family:var(--fb);font-size:11px;color:var(--ink);margin-top:4px;font-weight:500;line-height:1.3}
+.dom-count{font-family:var(--fm);font-size:10px;color:var(--muted);margin-top:4px}
 
-/* Metric */
-.mc{background:var(--g100);border-radius:var(--r6);padding:11px 13px;text-align:center}
-.mn{font-size:21px;font-weight:700;color:var(--g900);line-height:1;font-variant-numeric:tabular-nums}
-.mln{font-size:11px;color:var(--g500);margin-top:3px}
+/* UR */
+.urcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);padding:16px 18px;margin-bottom:10px}
+.urname{font-family:var(--fs);font-size:16px;color:var(--ink);font-weight:400;margin-bottom:3px;letter-spacing:-0.005em}
+.ursub{font-family:var(--fm);font-size:11px;color:var(--muted);margin-bottom:10px}
+.urtrack{display:flex;height:6px;border-radius:2px;overflow:hidden;background:var(--border);margin-bottom:10px}
+.urfill{height:100%;background:var(--rust);opacity:0.7;transition:width 700ms var(--eout)}
+.urstat{display:flex;gap:18px;flex-wrap:wrap}
+.ursi{font-family:var(--fm);font-size:11px;color:var(--muted)}
+.ursi strong{color:var(--ink);font-weight:500;margin-left:4px}
+.urwarn{font-family:var(--fb);font-size:11px;color:var(--rust);margin-top:8px;font-weight:500;font-style:italic}
 
-/* Products */
-.pcard{background:var(--w);border:1px solid var(--g200);border-radius:var(--r10);padding:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-@media(hover:hover) and (pointer:fine){.pcard{transition:box-shadow 160ms ease,border-color 160ms ease}.pcard:hover{box-shadow:0 4px 12px rgba(0,0,0,.07);border-color:var(--g300)}}
-.pname{font-size:13px;font-weight:600;color:var(--g900);margin-bottom:5px}
-.pnum{font-size:21px;font-weight:700;color:var(--navy);line-height:1;text-align:right;flex-shrink:0}
-.pnl{font-size:10px;color:var(--g400);margin-top:2px}
-.prow{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;align-items:center}
-.s-n{background:var(--or100);color:var(--or700);font-size:11px;font-weight:600;padding:2px 7px;border-radius:var(--r4)}
-.s-m{background:var(--bl100);color:var(--bl700);font-size:11px;font-weight:600;padding:2px 7px;border-radius:var(--r4)}
-.s-r{background:var(--red100);color:var(--red700);font-size:11px;font-weight:600;padding:2px 7px;border-radius:var(--r4)}
-.mhra-ok{background:var(--gr50);color:var(--gr700);font-size:11px;font-weight:500;padding:2px 7px;border-radius:var(--r4);border:1px solid var(--gr100)}
-.mhra-w{background:var(--red50);color:var(--red700);font-size:11px;font-weight:500;padding:2px 7px;border-radius:var(--r4);border:1px solid var(--red100)}
+/* METRIC */
+.mc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r6);padding:14px}
+.mn{font-family:var(--fs);font-size:30px;color:var(--ink);font-weight:400;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.015em}
+.mn.terra{color:var(--terracotta)}
+.mln{font-family:var(--fm);font-size:10px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:0.08em}
 
-/* Alerts */
-.acard{background:var(--w);border:1px solid var(--g200);border-radius:var(--r10);padding:15px;margin-bottom:11px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.acard.aa{border-color:#f59e0b;border-width:1.5px}
-.ahead{display:flex;align-items:flex-start;justify-content:space-between;gap:7px;margin-bottom:7px}
-.aid{font-family:'SF Mono',monospace;font-size:10px;color:var(--g400)}
-.apill{background:#fffbeb;border:1px solid #f59e0b;color:#b45309;font-size:11px;font-weight:600;padding:1px 7px;border-radius:20px;margin-left:7px;animation:pulse 2s infinite}
-.atitle{font-size:14px;font-weight:600;color:var(--g900);margin-bottom:7px}
-.asum{font-size:12px;color:var(--g600);line-height:1.6;margin-bottom:9px}
-.actbox{background:var(--g50);border:1px solid var(--g200);border-radius:var(--r6);padding:9px 11px;margin-bottom:9px}
-.actt{font-size:12px;color:var(--g700);line-height:1.5}
-.afoot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px}
-.dlt{font-size:11px;color:var(--g500)}
-.rb{font-size:11px;background:var(--g100);color:var(--g600);padding:2px 7px;border-radius:var(--r4);border:1px solid var(--g200);cursor:pointer;font-family:inherit;transition:background 120ms ease}
-.rb:hover{background:var(--g200)}
-.ah-h{background:var(--red100);color:var(--red700)}
-.ah-m{background:var(--or100);color:var(--or700)}
-.ah-l{background:var(--gr100);color:var(--gr700)}
+/* PRODUCT */
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);padding:16px 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;transition:border-color 180ms ease,background 180ms ease}
+@media(hover:hover) and (pointer:fine){.pcard:hover{border-color:var(--border-2);background:var(--surface-2)}}
+.pname{font-family:var(--fs);font-size:18px;color:var(--ink);font-weight:400;margin-bottom:5px;letter-spacing:-0.01em}
+.pname em{color:var(--terracotta);font-style:italic}
+.pnum{font-family:var(--fs);font-size:32px;color:var(--ink);line-height:1;text-align:right;flex-shrink:0;font-weight:400;letter-spacing:-0.02em}
+.pnl{font-family:var(--fm);font-size:9px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.08em;text-align:right}
+.prow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;align-items:center}
+.s-n{background:var(--terracotta-soft);color:var(--terracotta-2);font-family:var(--fb);font-size:11px;font-weight:500;padding:2px 8px;border-radius:var(--r4)}
+.s-m{background:var(--blue-soft);color:var(--blue);font-family:var(--fb);font-size:11px;font-weight:500;padding:2px 8px;border-radius:var(--r4)}
+.s-r{background:var(--rust-soft);color:var(--rust);font-family:var(--fb);font-size:11px;font-weight:500;padding:2px 8px;border-radius:var(--r4)}
+.mhra-ok{font-family:var(--fm);font-size:10px;background:transparent;color:var(--green);padding:2px 7px;border-radius:var(--r4);border:1px solid #C6D6A5;text-transform:uppercase;letter-spacing:0.04em;font-weight:500}
+.mhra-w{font-family:var(--fm);font-size:10px;background:transparent;color:var(--rust);padding:2px 7px;border-radius:var(--r4);border:1px solid #D4A89D;text-transform:uppercase;letter-spacing:0.04em;font-weight:500}
 
-/* Trust directory */
-.tcard{background:var(--w);border:1px solid var(--g200);border-radius:var(--r10);padding:13px;margin-bottom:8px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.tname{font-size:13px;font-weight:600;color:var(--g900);margin-bottom:3px}
-.tsub{font-size:11px;color:var(--g500);margin-bottom:6px}
-.tly{background:var(--gr50);border:1px solid var(--gr100);color:var(--gr700);font-size:11px;font-weight:600;padding:2px 8px;border-radius:var(--r4)}
-.tln{background:var(--red50);border:1px solid var(--red100);color:var(--red700);font-size:11px;font-weight:600;padding:2px 8px;border-radius:var(--r4)}
-.tlp{background:var(--ye100);border:1px solid #fde68a;color:var(--ye700);font-size:11px;font-weight:600;padding:2px 8px;border-radius:var(--r4)}
-.trn{font-size:19px;font-weight:700;color:var(--navy);line-height:1;text-align:right}
-.trl{font-size:10px;color:var(--g400);margin-top:1px}
+/* ALERT CARD */
+.acard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);padding:20px;margin-bottom:14px}
+.acard.aa{border-color:var(--rust);background:var(--surface-2)}
+.acard.aa::before{content:'';display:block;width:32px;height:2px;background:var(--rust);margin-bottom:12px}
+.ahead{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px}
+.aid{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.02em}
+.apill{background:var(--rust-soft);border:1px solid var(--rust);color:var(--rust);font-family:var(--fm);font-size:10px;font-weight:600;padding:1px 7px;border-radius:var(--r4);margin-left:8px;text-transform:uppercase;letter-spacing:0.04em;animation:pulse 2.2s infinite}
+.atitle{font-family:var(--fs);font-size:20px;line-height:1.25;color:var(--ink);font-weight:400;margin-bottom:10px;letter-spacing:-0.01em}
+.asum{font-size:13px;color:var(--ink-2);line-height:1.65;margin-bottom:12px}
+.actbox{background:var(--bg);border:1px solid var(--border);border-left:2px solid var(--terracotta);border-radius:var(--r4);padding:12px 14px;margin-bottom:12px}
+.actt{font-size:13px;color:var(--ink-2);line-height:1.6}
+.afoot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.dlt{font-family:var(--fm);font-size:11px;color:var(--muted)}
+.rb{font-family:var(--fm);font-size:10px;background:transparent;color:var(--ink-2);padding:3px 8px;border-radius:var(--r4);border:1px solid var(--border-2);cursor:pointer;transition:background 120ms ease,color 120ms ease}
+.rb:hover{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 
-/* Stagger — for lists entering with the page */
-.stag-list > *{
-  opacity:0;transform:translateY(5px);
-  animation:itemIn 260ms var(--eout) forwards;
-}
+/* TRUSTS */
+.tcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);padding:16px 18px;margin-bottom:8px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.tname{font-family:var(--fs);font-size:16px;color:var(--ink);font-weight:400;margin-bottom:4px;letter-spacing:-0.005em}
+.tsub{font-family:var(--fm);font-size:10px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.06em}
+.tly{background:var(--green-soft);border:1px solid #C6D6A5;color:var(--green);font-family:var(--fb);font-size:11px;font-weight:500;padding:2px 9px;border-radius:var(--r4)}
+.tln{background:var(--rust-soft);border:1px solid #D4A89D;color:var(--rust);font-family:var(--fb);font-size:11px;font-weight:500;padding:2px 9px;border-radius:var(--r4)}
+.tlp{background:var(--amber-tint);border:1px solid #E5C385;color:var(--amber-mark);font-family:var(--fb);font-size:11px;font-weight:500;padding:2px 9px;border-radius:var(--r4)}
+.trn{font-family:var(--fs);font-size:28px;font-weight:400;color:var(--ink);line-height:1;text-align:right}
+.trl{font-family:var(--fm);font-size:9px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:0.08em}
+
+/* STAGGER */
+.stag-list > *{opacity:0;transform:translateY(6px);animation:itemIn 280ms var(--eout) forwards}
 .stag-list > *:nth-child(1){animation-delay:30ms}
 .stag-list > *:nth-child(2){animation-delay:70ms}
 .stag-list > *:nth-child(3){animation-delay:110ms}
@@ -296,52 +290,62 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 .stag-list > *:nth-child(n+7){animation-delay:260ms}
 @keyframes itemIn{to{opacity:1;transform:translateY(0)}}
 
-/* Form */
-.fw{max-width:540px}
-.fg{margin-bottom:11px}
-.fg label{display:block;font-size:12px;font-weight:600;color:var(--g700);margin-bottom:3px}
-.fg input,.fg select,.fg textarea{width:100%;font-size:12px;font-family:inherit;border:1px solid var(--g200);border-radius:var(--r6);padding:6px 9px;background:var(--w);outline:none;transition:border-color 150ms ease,box-shadow 150ms ease}
-.fg textarea{min-height:65px;resize:vertical}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(4,44,83,.08)}
-.fdisc{font-size:11px;color:var(--g500);border:1px solid var(--g200);border-radius:var(--r6);padding:9px 11px;margin-bottom:12px;background:var(--g50);line-height:1.6}
-.ibox{background:var(--bl50);border:1px solid var(--bl100);border-radius:var(--r6);padding:9px 11px;font-size:12px;color:var(--bl700);margin-bottom:12px}
+/* FORM */
+.fw{max-width:580px}
+.fg{margin-bottom:13px}
+.fg label{display:block;font-family:var(--fm);font-size:10px;font-weight:500;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.08em}
+.fg input,.fg select,.fg textarea{width:100%;font-family:var(--fb);font-size:13px;border:1px solid var(--border-2);border-radius:var(--r6);padding:8px 11px;background:var(--surface);color:var(--ink);outline:none;transition:border-color 150ms ease,box-shadow 150ms ease}
+.fg textarea{min-height:72px;resize:vertical;font-family:var(--fb)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--terracotta);box-shadow:0 0 0 3px rgba(200,101,30,0.1)}
+.fdisc{font-family:var(--fb);font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:var(--r6);padding:11px 13px;margin-bottom:14px;background:var(--surface-2);line-height:1.65;font-style:italic}
+.ibox{background:var(--terracotta-tint);border:1px solid var(--terracotta-soft);border-radius:var(--r6);padding:11px 13px;font-size:12px;color:var(--terracotta-2);margin-bottom:14px;line-height:1.6}
 
-/* Primary button — press is sub-100ms, feel immediate */
-.sbtn{
-  background:var(--navy);color:var(--w);
-  padding:8px 20px;border-radius:var(--r6);
-  border:none;font-size:13px;font-weight:600;
-  cursor:pointer;font-family:inherit;
-  transition:background 150ms ease,transform 80ms var(--eout);
-}
+/* MINIMAL REPORT */
+.min-rep{background:var(--ink);color:var(--surface);border-radius:var(--r10);padding:16px 18px;margin-bottom:16px}
+.min-rep-eyebrow{font-family:var(--fm);font-size:10px;color:var(--terracotta);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.min-rep-title{font-family:var(--fs);font-size:18px;color:var(--surface);font-weight:400;margin-bottom:12px;letter-spacing:-0.005em}
+.min-rep .fg label{color:rgba(250,246,236,0.5)}
+.min-rep .fg input,.min-rep .fg select{background:rgba(250,246,236,0.04);border-color:rgba(250,246,236,0.15);color:var(--surface)}
+.min-rep .fg input::placeholder{color:rgba(250,246,236,0.35)}
+.min-rep .fg input:focus,.min-rep .fg select:focus{border-color:var(--terracotta);box-shadow:0 0 0 3px rgba(200,101,30,0.18)}
+
+/* BUTTON */
+.sbtn{background:var(--terracotta);color:var(--surface);padding:10px 22px;border-radius:var(--r6);border:none;font-family:var(--fb);font-size:13px;font-weight:600;cursor:pointer;transition:background 150ms ease,transform 80ms var(--eout);letter-spacing:-0.005em}
 .sbtn:active{transform:scale(0.97)}
-@media(hover:hover) and (pointer:fine){.sbtn:hover{background:#063568}}
+@media(hover:hover) and (pointer:fine){.sbtn:hover{background:var(--terracotta-2)}}
+.sbtn-dark{background:var(--surface);color:var(--ink)}
+.sbtn-dark:hover{background:#fff!important}
 
-/* Submit confirm */
-.confirm{display:none;text-align:center;padding:44px 16px}
-.confirm.on{display:block;animation:pageIn 250ms var(--eout)}
-.cico{width:50px;height:50px;background:var(--gr100);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;color:var(--gr700)}
-.ctit{font-size:16px;font-weight:700;color:var(--g900);margin-bottom:5px}
-.cref{font-size:13px;color:var(--g600);margin-bottom:5px}
-.cref span{font-family:'SF Mono',monospace;font-weight:600;color:var(--g900)}
-.cbod{font-size:13px;color:var(--g500);max-width:340px;margin:0 auto 18px;line-height:1.65}
+/* CONFIRM */
+.confirm{display:none;text-align:center;padding:60px 20px}
+.confirm.on{display:block;animation:pageIn 280ms var(--eout)}
+.cico{width:56px;height:56px;background:var(--green-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:24px;color:var(--green)}
+.ctit{font-family:var(--fs);font-size:22px;color:var(--ink);font-weight:400;margin-bottom:6px;letter-spacing:-0.01em}
+.cref{font-size:13px;color:var(--muted);margin-bottom:6px}
+.cref span{font-family:var(--fm);font-weight:500;color:var(--terracotta)}
+.cbod{font-size:13px;color:var(--muted);max-width:360px;margin:0 auto 22px;line-height:1.7}
 
-/* Gov */
-.gcard{background:var(--w);border:1px solid var(--g200);border-radius:var(--r10);padding:13px 15px;margin-bottom:7px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.gtit{font-size:13px;font-weight:600;color:var(--g900);margin-bottom:4px;display:flex;align-items:center;gap:7px}
-.gico{width:22px;height:22px;background:var(--navy);color:var(--w);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
-.gbod{font-size:12px;color:var(--g600);line-height:1.7}
-.gfoot{font-size:11px;color:var(--g400);border-top:1px solid var(--g100);padding-top:11px;margin-top:3px;line-height:1.7}
+/* GOV */
+.gcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);padding:18px 20px;margin-bottom:10px}
+.gtit{font-family:var(--fs);font-size:18px;color:var(--ink);font-weight:400;margin-bottom:8px;display:flex;align-items:baseline;gap:10px;letter-spacing:-0.005em}
+.gnum{font-family:var(--fm);font-size:11px;color:var(--terracotta);font-weight:500}
+.gbod{font-size:13px;color:var(--ink-2);line-height:1.7}
+.gfoot{font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:14px;margin-top:6px;line-height:1.75;font-style:italic}
 
-.footer{background:var(--navy);padding:9px 20px;text-align:center;flex-shrink:0}
-.footer p{font-size:11px;color:rgba(255,255,255,.3)}
+/* MIT CITATION BOX */
+.mit-cite{background:var(--surface-2);border:1px solid var(--border);border-left:2px solid var(--terracotta);border-radius:var(--r4);padding:14px 16px;margin-bottom:18px}
+.mit-cite-label{font-family:var(--fm);font-size:9px;color:var(--terracotta);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px}
+.mit-cite-title{font-family:var(--fs);font-size:16px;color:var(--ink);font-weight:400;margin-bottom:6px;letter-spacing:-0.005em}
+.mit-cite-body{font-size:12px;color:var(--ink-2);line-height:1.65}
+.mit-cite-link{color:var(--terracotta);text-decoration:none;font-family:var(--fm);font-size:11px}
+.mit-cite-link:hover{text-decoration:underline}
 
-@media(max-width:600px){.g2{grid-template-columns:1fr}.sg{grid-template-columns:repeat(3,1fr)}.st:nth-child(5),.st:nth-child(6){display:none}}
-@media(prefers-reduced-motion:reduce){
-  *{transition:none!important;animation:none!important}
-  .page.on{animation:none}
-  .bf,.hbf,.sf2{animation:none}
-}
+/* FOOTER */
+.footer{background:var(--ink);padding:14px 32px;text-align:center;flex-shrink:0}
+.footer p{font-family:var(--fm);font-size:10px;color:rgba(250,246,236,0.35);letter-spacing:0.04em}
+
+@media(max-width:768px){.g2,.split{grid-template-columns:1fr}.sg{grid-template-columns:repeat(3,1fr)}.stat:nth-child(n+4){display:none}.taxo-grid{grid-template-columns:1fr}.dom-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -349,35 +353,40 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 
 <div id="hdr">
   <div class="hi">
-    <div class="logo">
-      <div class="lb">UK</div>
-      <div><div class="ln">UK Healthcare AI Safety Registry</div><div class="ls">Risks &middot; near misses &middot; reported harms</div></div>
+    <div class="brand">
+      <span class="brand-eyebrow">— National infrastructure proposal</span>
+      <h1 class="brand-title">UK Healthcare AI <em>Safety Registry</em></h1>
+      <p class="brand-sub">A national, publicly searchable record of risks, near misses and reported harms from healthcare AI deployments. Grounded in the MIT AI Risk Repository taxonomy.</p>
     </div>
-    <span class="proto">Prototype v0.5</span>
+    <div class="brand-meta">
+      <div><strong>Concept prototype</strong></div>
+      <div>Sarah Amani · May 2026</div>
+      <span class="proto-tag">v0.6</span>
+    </div>
   </div>
 </div>
 
 <div id="statsbar">
   <div class="sg">
-    <div class="st"><div class="stn" id="s-total">0</div><div class="stl">Total reports</div></div>
-    <div class="st"><div class="stn" id="s-near">0</div><div class="stl">Near misses</div></div>
-    <div class="st"><div class="stn" id="s-harms">0</div><div class="stl">Harms</div></div>
-    <div class="st"><div class="stn" id="s-alerts">0</div><div class="stl">Alerts issued</div></div>
-    <div class="st"><div class="stn" id="s-trusts">0</div><div class="stl">Trusts reporting</div></div>
-    <div class="st"><div class="stn" style="color:#f87171" id="s-rate">0%</div><div class="stl">Report rate vs deployments</div></div>
+    <div class="stat"><div class="stat-l">Total reports</div><div class="stat-n" id="s-total">0</div></div>
+    <div class="stat"><div class="stat-l">Near misses</div><div class="stat-n" id="s-near">0</div></div>
+    <div class="stat"><div class="stat-l">Reported harms</div><div class="stat-n" id="s-harms">0</div></div>
+    <div class="stat"><div class="stat-l">Alerts issued</div><div class="stat-n terra" id="s-alerts">0</div></div>
+    <div class="stat"><div class="stat-l">Trusts reporting</div><div class="stat-n" id="s-trusts">0</div></div>
+    <div class="stat"><div class="stat-l">Report rate vs deploy</div><div class="stat-n warn" id="s-rate">0%</div></div>
   </div>
 </div>
 
-<div id="navbarnav">
+<div id="navbar">
   <div class="ni">
-    <button type="button" class="tab on" onclick="T('dashboard')">&#9700; Dashboard</button>
-    <button type="button" class="tab" onclick="T('browse')">&#9782; Browse</button>
-    <button type="button" class="tab" onclick="T('products')">&#9670; Products</button>
+    <button type="button" class="tab on" onclick="T('dashboard')"><span class="tab-ico">01</span>Dashboard</button>
+    <button type="button" class="tab" onclick="T('browse')"><span class="tab-ico">02</span>Browse</button>
+    <button type="button" class="tab" onclick="T('products')"><span class="tab-ico">03</span>Products</button>
     <button type="button" class="tab" onclick="T('alerts')"><span class="adot"></span>Safety alerts</button>
-    <button type="button" class="tab" onclick="T('analytics')">&#9636; Analytics</button>
-    <button type="button" class="tab" onclick="T('trusts')">&#9872; Trust leads</button>
-    <button type="button" class="tab" onclick="T('submit')">+ Submit</button>
-    <button type="button" class="tab" onclick="T('governance')">&#9672; Governance</button>
+    <button type="button" class="tab" onclick="T('analytics')"><span class="tab-ico">04</span>Analytics</button>
+    <button type="button" class="tab" onclick="T('trusts')"><span class="tab-ico">05</span>Trust leads</button>
+    <button type="button" class="tab" onclick="T('submit')"><span class="tab-ico">06</span>Submit</button>
+    <button type="button" class="tab" onclick="T('governance')"><span class="tab-ico">07</span>Governance</button>
   </div>
 </div>
 
@@ -386,12 +395,13 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 <!-- DASHBOARD -->
 <div id="p-dashboard" class="page on">
 <div class="page-inner">
-  <div class="ab">
-    <span style="color:#d97706;font-size:15px;flex-shrink:0;margin-top:1px">&#9888;</span>
-    <div class="abt"><strong>Active &mdash; ALERT-2026-003 &middot; 15 May 2026.</strong> All trusts using AI risk stratification in mental health must complete an equity audit by 30 Jun 2026. <button type="button" class="alk" onclick="T('alerts')">View full alert &rarr;</button></div>
+  <div class="alert-row">
+    <span class="alert-mark">ALERT 2026/003 · 15 MAY 2026</span>
+    <div class="alert-text"><strong>Mandatory equity audit — AI risk stratification in mental health.</strong> All trusts using these tools must complete an equity audit by 30 Jun 2026. <button type="button" class="alert-link" onclick="T('alerts')">View full alert</button></div>
   </div>
+
   <div class="qr">
-    <span class="qr-label">&#9889; Quick report</span>
+    <div class="qr-head"><span class="qr-prompt">›</span><span class="qr-label">Quick report</span><span class="qr-cmd">designed for the end of a busy surgery — one tap</span></div>
     <div class="qr-btns">
       <button type="button" class="qrb danger" onclick="QR('Near miss')">Near miss</button>
       <button type="button" class="qrb danger" onclick="QR('Low harm')">Low harm</button>
@@ -399,104 +409,156 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
       <button type="button" class="qrb danger" onclick="QR('Severe harm')">Severe harm</button>
       <button type="button" class="qrb" onclick="QR('No harm — risk identified')">Risk identified (no harm)</button>
     </div>
-    <span class="qr-note">One tap to open a minimal report. Full details optional &mdash; designed for the end of a busy surgery.</span>
+    <p class="qr-note">Two-field minimum. Full details optional. Reference number returned immediately.</p>
   </div>
+
   <div class="g2">
-    <div class="card"><div class="ct">Monthly reports submitted</div><div class="bw" id="ch-trend"><div class="bax"></div></div></div>
-    <div class="card"><div class="ct">Reports by AI type</div><div class="hbr" id="ch-type"></div></div>
+    <div class="card">
+      <div class="card-eyebrow">— Trend</div>
+      <div class="card-title">Monthly reports submitted</div>
+      <div class="bw" id="ch-trend"><div class="bax"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-eyebrow">— By system type</div>
+      <div class="card-title">Where the signal is coming from</div>
+      <div class="hbr" id="ch-type"></div>
+    </div>
   </div>
-  <div class="sh"><div class="st2">Recent incidents</div><button type="button" class="sl2" onclick="T('browse')">View all 12 &rarr;</button></div>
-  <div id="d-inc" class="stag-list"></div>
+
+  <div class="section">
+    <div class="eyebrow"><span class="eyebrow-bar"></span>Recent incidents</div>
+    <div id="d-inc" class="stag-list"></div>
+  </div>
 </div></div>
 
 <!-- BROWSE -->
 <div id="p-browse" class="page"><div class="page-inner">
-  <div class="pt">Incident database</div>
-  <div class="ps">All reports, anonymised before publication. Incidents with linked outcomes shown in green.</div>
+  <div class="section">
+    <div class="eyebrow"><span class="eyebrow-bar"></span>Incident database</div>
+    <h2 class="headline">The full record, <em>anonymised before publication</em></h2>
+    <p class="lede">Each incident classified using the MIT AI Risk Repository causal and domain taxonomies. Reports linked to outcomes shown with a green publication tag.</p>
+  </div>
   <div class="fr">
-    <input id="si" placeholder="Search title or tags&hellip;" oninput="FI()">
+    <input id="si" placeholder="Search title or tags…" oninput="FI()">
     <select id="sv2" onchange="FI()"><option value="">All severities</option><option>Death</option><option>Severe harm</option><option>Moderate harm</option><option>Low harm</option><option>Near miss</option><option>No harm</option></select>
     <select id="st3" onchange="FI()"><option value="">All AI types</option><option>Clinical decision support</option><option>NLP / ambient scribe</option><option>Risk stratification</option><option>Diagnostic imaging AI</option><option>Mental health / wellbeing app</option><option>Virtual ward / remote monitoring</option><option>Prescribing / EPMA</option></select>
+    <select id="sdom" onchange="FI()"><option value="">All MIT domains</option><option value="1">1. Discrimination &amp; Toxicity</option><option value="2">2. Privacy &amp; Security</option><option value="3">3. Misinformation</option><option value="5">5. Human-Computer Interaction</option><option value="6">6. Socioeconomic</option><option value="7">7. AI System Safety</option></select>
   </div>
-  <div class="rc2" id="bco">12 incidents</div>
+  <div class="rcount" id="bco">12 incidents</div>
   <div id="b-inc" class="stag-list"></div>
 </div></div>
 
 <!-- PRODUCTS -->
 <div id="p-products" class="page"><div class="page-inner">
-  <div class="pt">Product directory</div>
-  <div class="ps">AI products with linked reports. MHRA registration status shown. Use before procurement or when authoring clinical safety cases.</div>
+  <div class="section">
+    <div class="eyebrow"><span class="eyebrow-bar"></span>Product directory</div>
+    <h2 class="headline">AI products with <em>linked incident reports</em></h2>
+    <p class="lede">MHRA registration status cross-referenced. Useful before procurement or when authoring clinical safety cases.</p>
+  </div>
   <div class="fr">
-    <input id="pi" placeholder="Search product or manufacturer&hellip;" oninput="FP()">
+    <input id="pi" placeholder="Search product or manufacturer…" oninput="FP()">
     <select id="pt2" onchange="FP()"><option value="">All types</option><option>Clinical decision support</option><option>NLP / ambient scribe</option><option>Risk stratification</option><option>Diagnostic imaging AI</option><option>Mental health / wellbeing app</option><option>Virtual ward / remote monitoring</option><option>Prescribing / EPMA</option></select>
   </div>
-  <div class="rc2" id="pco">10 products</div>
+  <div class="rcount" id="pco">10 products</div>
   <div id="p-list" class="stag-list"></div>
-  <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:var(--r6);padding:10px 12px;font-size:12px;color:#92400e;margin-top:4px">&#9888; MHRA registration status cross-referenced at last registry update. Inspired by HSJ's finding that only 3 of 23 registered AVT vendors were searchable on MHRA's site prior to May 2026.</div>
+  <div class="mit-cite" style="margin-top:18px">
+    <div class="mit-cite-label">— Note on MHRA registration</div>
+    <div class="mit-cite-body">Status cross-referenced at last registry update. Inspired by HSJ's finding that only 3 of 23 registered AVT vendors were searchable on MHRA's site prior to May 2026.</div>
+  </div>
 </div></div>
 
 <!-- ALERTS -->
 <div id="p-alerts" class="page"><div class="page-inner">
-  <div class="pt">National safety alerts</div>
-  <div class="ps">Issued where incident patterns indicate a systemic risk requiring action across NHS trusts.</div>
+  <div class="section">
+    <div class="eyebrow"><span class="eyebrow-bar"></span>National safety alerts</div>
+    <h2 class="headline">Issued where patterns indicate <em>systemic risk</em></h2>
+    <p class="lede">Required action with deadline, cross-referenced to originating incidents. Closing the loop is what changes the clinician's reporting calculation.</p>
+  </div>
   <div id="al-list" class="stag-list"></div>
 </div></div>
 
 <!-- ANALYTICS -->
 <div id="p-analytics" class="page"><div class="page-inner">
-  <div class="sh"><div class="st2">Registry analytics</div><span style="font-size:12px;color:var(--g400)">356 reports &middot; Jan 2025 &ndash; May 2026</span></div>
+  <div class="section">
+    <div class="eyebrow"><span class="eyebrow-bar"></span>Analytics · 356 reports · Jan 2025 – May 2026</div>
+    <h2 class="headline">Signal, not noise</h2>
+  </div>
+
   <div class="g2">
-    <div class="card"><div class="ct">Severity distribution</div><div id="ch-sev"></div></div>
-    <div class="card"><div class="ct">Reports by care setting</div><div class="hbr" id="ch-set"></div></div>
+    <div class="card"><div class="card-eyebrow">— Severity distribution</div><div class="card-title">By harm rating</div><div id="ch-sev"></div></div>
+    <div class="card"><div class="card-eyebrow">— By care setting</div><div class="card-title">Where reports originate</div><div class="hbr" id="ch-set"></div></div>
   </div>
-  <div class="g2" style="margin-bottom:12px">
-    <div class="card"><div class="ct">Top contributing factors</div><div class="hbr" id="ch-fac"></div></div>
-    <div class="card"><div class="ct">Quarterly volume</div><div class="bw" id="ch-qtr"><div class="bax"></div></div></div>
+
+  <!-- MIT Domain Taxonomy distribution — new -->
+  <div class="card" style="margin-bottom:18px">
+    <div class="card-eyebrow">— MIT AI Risk Repository taxonomy</div>
+    <div class="card-title">Incident classification by domain</div>
+    <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px">Mapped against the MIT Domain Taxonomy of AI Risks (7 domains, 24 subdomains). <a href="https://airisk.mit.edu" target="_blank" class="mit-cite-link">airisk.mit.edu</a></p>
+    <div class="dom-grid" id="ch-dom"></div>
   </div>
-  <div class="sh" style="margin-top:4px"><div class="st2">&#9888; Underreporting signal</div><span style="font-size:12px;color:var(--g400)">Deployment volume vs report rate by category</span></div>
-  <p style="font-size:12px;color:var(--g600);margin-bottom:12px;line-height:1.6">Five Yellow Card reports across 15M+ ambient voice tool consultations is not a safety record &mdash; it is a measurement failure. Where the bar is very short relative to deployment volume, the signal is likely absent, not the harm.</p>
-  <div id="ur-list" class="stag-list"></div>
-  <div class="g3" style="margin-top:14px">
-    <div class="mc"><div class="mn">73%</div><div class="mln">Near miss or no harm</div></div>
+
+  <div class="g2" style="margin-bottom:18px">
+    <div class="card"><div class="card-eyebrow">— Contributing factors</div><div class="card-title">Where AI systems fail</div><div class="hbr" id="ch-fac"></div></div>
+    <div class="card"><div class="card-eyebrow">— Quarterly volume</div><div class="card-title">Trajectory of reporting</div><div class="bw" id="ch-qtr"><div class="bax"></div></div></div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow"><span class="eyebrow-bar"></span>Underreporting signal</div>
+    <h2 class="headline">Where the silence is loudest</h2>
+    <p class="lede" style="margin-bottom:16px">Five Yellow Card reports across 15M+ ambient voice tool consultations is not a safety record &mdash; it is a measurement failure. Where the bar is short relative to deployment volume, the signal is likely absent, not the harm.</p>
+    <div id="ur-list" class="stag-list"></div>
+  </div>
+
+  <div class="g3" style="margin-top:18px">
+    <div class="mc"><div class="mn terra">73%</div><div class="mln">Near miss or no harm</div></div>
     <div class="mc"><div class="mn">26%</div><div class="mln">Reported by clinicians</div></div>
-    <div class="mc"><div class="mn">14</div><div class="mln">Days avg. to publication</div></div>
+    <div class="mc"><div class="mn">14<span style="font-size:14px;color:var(--muted)"> days</span></div><div class="mln">Avg. to publication</div></div>
   </div>
 </div></div>
 
-<!-- TRUST LEADS -->
+<!-- TRUSTS -->
 <div id="p-trusts" class="page"><div class="page-inner">
-  <div class="pt">Trust AI safety lead directory</div>
-  <div class="ps">Named accountability for closing the loop between frontline observation and regulatory submission. Trusts without a named AI safety lead are flagged.</div>
+  <div class="section">
+    <div class="eyebrow"><span class="eyebrow-bar"></span>Trust AI safety lead directory</div>
+    <h2 class="headline">Named accountability, <em>publicly visible</em></h2>
+    <p class="lede">Trusts without a named AI safety lead are flagged. Closing the loop between frontline observation and regulatory submission requires named accountability at the ICB and trust level.</p>
+  </div>
   <div class="fr">
-    <input id="ti2" placeholder="Search trust&hellip;" oninput="FT()">
+    <input id="ti2" placeholder="Search trust…" oninput="FT()">
     <select id="tl2" onchange="FT()"><option value="">All statuses</option><option value="yes">Named lead confirmed</option><option value="part">In progress</option><option value="no">No named lead</option></select>
   </div>
-  <div class="rc2" id="tco">12 trusts</div>
+  <div class="rcount" id="tco">12 trusts</div>
   <div id="t-list" class="stag-list"></div>
-  <div style="font-size:11px;color:var(--g400);border-top:1px solid var(--g200);padding-top:10px;margin-top:4px;line-height:1.6">Directory populated from voluntary trust self-declaration and ICB returns. Proposed as a contractual requirement in registry governance framework v0.5.</div>
 </div></div>
 
 <!-- SUBMIT -->
 <div id="p-submit" class="page"><div class="page-inner">
   <div id="sf" class="fw">
-    <div class="pt">Submit an incident report</div>
-    <div class="ps">Open to NHS clinicians, digital leads, patient safety officers, patients and carers. Minimal report accepted &mdash; full details optional.</div>
-    <div class="ibox">&#9432; Prototype only. In a live service submissions would be encrypted and reviewed by the clinical safety panel before publication.</div>
-    <div style="background:var(--navy);border-radius:var(--r6);padding:11px 13px;margin-bottom:14px">
-      <div style="color:rgba(255,255,255,.7);font-size:12px;font-weight:500;margin-bottom:8px">&#9889; Minimal report &mdash; two fields required</div>
-      <div class="fg" style="margin-bottom:7px"><label style="color:rgba(255,255,255,.6)">AI system / product name *</label><input id="fp" placeholder="e.g. ambient scribe, diagnostic AI, triage tool"></div>
-      <div class="fg" style="margin-bottom:7px"><label style="color:rgba(255,255,255,.6)">Severity *</label><select id="fsv3"><option>Select&hellip;</option><option>Death</option><option>Severe harm</option><option>Moderate harm</option><option>Low harm</option><option>Near miss</option><option>No harm (risk identified)</option></select></div>
-      <button type="button" class="sbtn" style="width:100%;margin-top:4px" onclick="SUB()">Submit minimal report</button>
+    <div class="section">
+      <div class="eyebrow"><span class="eyebrow-bar"></span>Submit a report</div>
+      <h2 class="headline">Minimum friction, <em>maximum signal</em></h2>
+      <p class="lede">Two fields required. Full details optional. Reference number returned immediately. Designed for the clinician who finishes surgery and notices something off.</p>
     </div>
+
+    <div class="ibox">Prototype only. In a live service, submissions would be encrypted and reviewed by the clinical safety panel before publication.</div>
+
+    <div class="min-rep">
+      <div class="min-rep-eyebrow">— Minimal report</div>
+      <div class="min-rep-title">Two fields, ten seconds</div>
+      <div class="fg" style="margin-bottom:9px"><label>AI system / product name *</label><input id="fp" placeholder="e.g. ambient scribe, diagnostic AI, triage tool"></div>
+      <div class="fg" style="margin-bottom:11px"><label>Severity *</label><select id="fsv3"><option>Select…</option><option>Death</option><option>Severe harm</option><option>Moderate harm</option><option>Low harm</option><option>Near miss</option><option>No harm (risk identified)</option></select></div>
+      <button type="button" class="sbtn" style="width:100%" onclick="SUB()">Submit minimal report</button>
+    </div>
+
     <details style="margin-bottom:14px">
-      <summary style="font-size:12px;font-weight:600;color:var(--g700);cursor:pointer;padding:8px 0">+ Add full details (optional but valuable)</summary>
+      <summary style="font-family:var(--fm);font-size:11px;font-weight:500;color:var(--terracotta);cursor:pointer;padding:10px 0;text-transform:uppercase;letter-spacing:0.08em">+ Add full details (optional but valuable)</summary>
       <div style="padding-top:10px">
         <div class="fg"><label>Manufacturer / developer</label><input></div>
-        <div class="fg"><label>AI system type</label><select><option>Select&hellip;</option><option>Clinical decision support</option><option>Diagnostic imaging AI</option><option>NLP / ambient scribe</option><option>Risk stratification</option><option>Mental health / wellbeing app</option><option>Virtual ward / remote monitoring</option><option>Prescribing / EPMA</option><option>Triage AI</option><option>Other</option></select></div>
-        <div class="fg"><label>Care setting</label><select><option>Select&hellip;</option><option>Primary care</option><option>Secondary care &mdash; acute</option><option>Community mental health</option><option>Emergency department</option><option>Screening programme</option><option>Other</option></select></div>
-        <div class="fg"><label>Incident description</label><textarea placeholder="What happened? No patient or staff names."></textarea></div>
-        <div class="fg"><label>Contributing factors</label><textarea style="min-height:52px" placeholder="e.g. data quality, workflow design, training gaps, inadequate oversight"></textarea></div>
-        <div class="fg"><label>Key learning</label><textarea style="min-height:52px" placeholder="What should other trusts know?"></textarea></div>
+        <div class="fg"><label>AI system type</label><select><option>Select…</option><option>Clinical decision support</option><option>Diagnostic imaging AI</option><option>NLP / ambient scribe</option><option>Risk stratification</option><option>Mental health / wellbeing app</option><option>Virtual ward / remote monitoring</option><option>Prescribing / EPMA</option><option>Triage AI</option><option>Other</option></select></div>
+        <div class="fg"><label>Care setting</label><select><option>Select…</option><option>Primary care</option><option>Secondary care — acute</option><option>Community mental health</option><option>Emergency department</option><option>Screening programme</option><option>Other</option></select></div>
+        <div class="fg"><label>Incident description</label><textarea placeholder="What happened? What did the AI do or fail to do? No patient or staff names."></textarea></div>
+        <div class="fg"><label>Contributing factors</label><textarea style="min-height:56px" placeholder="e.g. data quality, workflow design, training gaps, inadequate oversight"></textarea></div>
+        <div class="fg"><label>Key learning</label><textarea style="min-height:56px" placeholder="What should other trusts know?"></textarea></div>
         <div class="fg"><label>Your role</label><input placeholder="e.g. clinical safety officer, ward nurse, patient / carer"></div>
         <div class="fdisc">By submitting you confirm all patient-identifiable information has been removed and this report is made in good faith.</div>
         <button type="button" class="sbtn" onclick="SUB()">Submit full report</button>
@@ -514,100 +576,109 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 
 <!-- GOVERNANCE -->
 <div id="p-governance" class="page"><div class="page-inner">
-  <div class="pt">Governance &amp; methodology</div>
-  <div class="ps">This registry complements &mdash; not replaces &mdash; LFPSE, MHRA Yellow Card, and trust-level incident reporting.</div>
+  <div class="section">
+    <div class="eyebrow"><span class="eyebrow-bar"></span>Governance &amp; methodology</div>
+    <h2 class="headline">Theoretical foundation &amp; <em>operating principles</em></h2>
+    <p class="lede">The registry complements — does not replace — LFPSE, MHRA Yellow Card, and trust-level incident reporting. Classification grounded in the MIT AI Risk Repository.</p>
+  </div>
+
+  <div class="mit-cite">
+    <div class="mit-cite-label">— Theoretical foundation</div>
+    <div class="mit-cite-title">MIT AI Risk Repository</div>
+    <div class="mit-cite-body" style="margin-bottom:8px">A comprehensive living database of over 1,700 AI risks, with a Causal Taxonomy (Entity · Intent · Timing) and a Domain Taxonomy (7 domains, 24 subdomains). Every incident in this registry is classified against both taxonomies, giving NHS clinical safety officers a peer-reviewed shared vocabulary to use when authoring DCB0129 hazard analyses.</div>
+    <a href="https://airisk.mit.edu" target="_blank" class="mit-cite-link">→ airisk.mit.edu</a>
+  </div>
+
   <div id="g-list" class="stag-list"></div>
-  <div class="gfoot">Concept design: May 2026. Improved following analysis of: Luke Kellaway (HSJ) on AVT underreporting &middot; Yash Morje on distributed failure pathways &middot; Paul Brady on FMEA application to AI safety. Informed by: DCB0129/0160 &middot; LFPSE taxonomy &middot; MHRA Yellow Card AI pathway &middot; AHRQ AI in Healthcare Safety Program (USA) &middot; UNESCO Recommendation on the Ethics of AI (2021) &middot; EU AI Act Annex III &middot; UK National Commission on the Regulation of AI in Healthcare (2025&ndash;26).</div>
+
+  <div class="gfoot">Concept design: May 2026. Improved following: Luke Kellaway (HSJ) on AVT underreporting · Yash Morje on distributed failure pathways · Paul Brady on FMEA application to AI safety · Oana &lt;surname&gt; on HSSIB ePMA safety observation O/2026/087. Informed by: DCB0129/0160 · LFPSE taxonomy · MHRA Yellow Card AI pathway · AHRQ AI in Healthcare Safety Program (USA) · UNESCO Recommendation on the Ethics of AI (2021) · EU AI Act Annex III · UK National Commission on the Regulation of AI in Healthcare (2025–26) · MIT AI Risk Repository (2024–26).</div>
 </div></div>
 
 </div>
-<div class="footer"><p>UK Healthcare AI Safety Registry &middot; Concept prototype v0.5 &middot; Not a live service &middot; May 2026 &middot; Designed by Sarah Amani</p></div>
+<div class="footer"><p>UK HEALTHCARE AI SAFETY REGISTRY · CONCEPT PROTOTYPE V0.6 · NOT A LIVE SERVICE · MAY 2026 · DESIGNED BY SARAH AMANI</p></div>
 </div>
-
-<div class="toast" id="toast"></div>
 
 <script>
 var TABS=['dashboard','browse','products','alerts','analytics','trusts','submit','governance'];
 function T(n){
   TABS.forEach(function(p){var el=document.getElementById('p-'+p);if(el)el.className=p===n?'page on':'page';});
+  var nums=['01','02','03','','04','05','06','07'];
   document.querySelectorAll('.tab').forEach(function(b,i){
     b.className=TABS[i]===n?'tab on':'tab';
     if(TABS[i]==='alerts')b.innerHTML='<span class="adot"></span>Safety alerts';
+    else b.innerHTML='<span class="tab-ico">'+nums[i]+'</span>'+(TABS[i]==='dashboard'?'Dashboard':TABS[i]==='browse'?'Browse':TABS[i]==='products'?'Products':TABS[i]==='analytics'?'Analytics':TABS[i]==='trusts'?'Trust leads':TABS[i]==='submit'?'Submit':'Governance');
   });
 }
 function QR(sev){
   T('submit');
   var el=document.getElementById('fsv3');
   for(var i=0;i<el.options.length;i++){if(el.options[i].text===sev){el.selectedIndex=i;break;}}
-  document.getElementById('fp').focus();
+  setTimeout(function(){document.getElementById('fp').focus();},200);
 }
-var _toastTimer;
-function showToast(msg){
-  var t=document.getElementById('toast');
-  clearTimeout(_toastTimer);
-  t.className='toast';t.textContent=msg;
-  requestAnimationFrame(function(){requestAnimationFrame(function(){t.classList.add('show');});});
-  _toastTimer=setTimeout(function(){
-    t.classList.remove('show');t.classList.add('hide');
-    setTimeout(function(){t.className='toast';},160);
-  },3200);
-}
-
-// Countup animation for stats — perceived performance trick
 function countUp(el,target,suffix,dur){
-  var start=0,step=target/((dur||600)/16);
-  var id=setInterval(function(){
-    start+=step;if(start>=target){start=target;clearInterval(id);}
-    el.textContent=Math.floor(start)+(suffix||'');
-  },16);
+  if(!el)return;
+  var start=0,step=target/((dur||700)/16);
+  var id=setInterval(function(){start+=step;if(start>=target){start=target;clearInterval(id);}el.textContent=Math.floor(start)+(suffix||'');},16);
 }
 window.addEventListener('DOMContentLoaded',function(){
   setTimeout(function(){
-    countUp(document.getElementById('s-total'),356,'',700);
-    countUp(document.getElementById('s-near'),163,'',600);
-    countUp(document.getElementById('s-harms'),94,'',500);
-    countUp(document.getElementById('s-alerts'),5,'',300);
-    countUp(document.getElementById('s-trusts'),41,'',400);
-    // rate: count to 0.002
+    countUp(document.getElementById('s-total'),356,'',750);
+    countUp(document.getElementById('s-near'),163,'',650);
+    countUp(document.getElementById('s-harms'),94,'',550);
+    countUp(document.getElementById('s-alerts'),5,'',350);
+    countUp(document.getElementById('s-trusts'),41,'',450);
     var rEl=document.getElementById('s-rate'),r=0,rStep=0.002/40;
     var rId=setInterval(function(){r+=rStep;if(r>=0.002){r=0.002;clearInterval(rId);}rEl.textContent=r.toFixed(3)+'%';},16);
   },200);
 });
 
+/* Incidents with MIT taxonomy classification */
 var INC=[
-  {id:'UKHAI-2025-0055',dt:'19 Feb 2025',sv:'Moderate harm',sc:'bd-m',tp:'Clinical decision support',se:'Emergency department',rg:'Yorkshire (anon)',ti:'ED triage AI assigned low acuity to atypical MI; 4-hour delay in troponin testing',su:'AI assigned Priority 4 to a 67-year-old with jaw pain, nausea and fatigue. Training overweighted classic chest pain. Troponin delayed 4 hours; NSTEMI diagnosed.',fc:['Training overweighted typical cardiac presentations','No low-confidence flag for clinical override','Atypical presentations underrepresented'],lrn:'AI triage must perform equitably across atypical presentations. Low-confidence outputs must surface to the clinician.',tg:['Triage','Diagnostic delay','Atypical presentation'],out:null},
-  {id:'UKHAI-2025-0089',dt:'14 Mar 2025',sv:'Near miss',sc:'bd-n',tp:'Clinical decision support',se:'Secondary care — acute',rg:'North of England (anon)',ti:'Sepsis prediction algorithm silent on deteriorating patient due to incomplete EHR data ingestion',su:'Key physiological parameters not ingested in expected window. No alert generated. Ward nurse identified deterioration on NEWS2 before harm.',fc:['Incomplete EHR data pipeline','No alert for missing inputs','Over-reliance on AI without completeness check'],lrn:'Data completeness checks must surface before AI output is displayed. Uncertainty must be communicated, not silenced.',tg:['EHR integration','Alert design','Data completeness'],out:'Manufacturer issued product update v2.3.1 adding data ingestion failure alerts. Trust confirmed deployment. ALERT-2025-004 closed.'},
-  {id:'UKHAI-2025-0112',dt:'22 Apr 2025',sv:'Low harm',sc:'bd-l',tp:'Prescribing / EPMA',se:'Secondary care — acute',rg:'East Midlands (anon)',ti:'AI drug interaction checker missed interaction absent from outdated knowledge base; minor bleeding',su:'Post-marketing interaction data published 6 weeks prior not loaded. Interaction missed. Minor bleeding before specialist pharmacist identified issue.',fc:['Knowledge base update cycle too slow','No alert when currency below threshold','AI checker displaced pharmacist review'],lrn:'AI drug interaction systems must have defined maximum update intervals linked to regulatory publication timelines.',tg:['Medication safety','EPMA','Knowledge base currency'],out:null},
-  {id:'UKHAI-2025-0134',dt:'02 Jun 2025',sv:'Low harm',sc:'bd-l',tp:'NLP / ambient scribe',se:'Primary care',rg:'Midlands (anon)',ti:'Ambient scribe misattributed resolved allergy status; incorrect prescribing record',su:'Temporal context error conflated allergy history across consultations. Penicillin allergy documented as resolved. Caught at dispensing pharmacy.',fc:['Temporal context errors in NLP output','No mandatory verification of AI-generated allergy fields','Pharmacy safety netting effective'],lrn:'AI-generated allergy fields require mandatory clinician verification before record commit.',tg:['Medication safety','NLP error','Allergy record'],out:'Led to ALERT-2026-001. Manufacturer ScribeAI NHS Edition issued mandatory update adding active allergy verification. Deployed across 14 trusts.'},
-  {id:'UKHAI-2025-0178',dt:'09 Jul 2025',sv:'Near miss',sc:'bd-n',tp:'Clinical decision support',se:'Primary care',rg:'South East England (anon)',ti:'GP triage AI classified acute appendicitis as gastroenteritis; safety-netted by OOH GP',su:'Right iliac fossa pain, nausea and low-grade fever assessed as viral gastroenteritis. OOH GP recognised appendicitis same evening. Laparoscopic appendicectomy next day.',fc:['Probability threshold too conservative','Model trained on self-limiting presentations','No escalation for NICE appendicitis criteria'],lrn:'GP triage AI must incorporate NICE symptom combination rules. Conservative thresholds for surgical emergencies increase missed diagnosis risk.',tg:['GP triage','Appendicitis','Surgical emergency'],out:null},
-  {id:'UKHAI-2025-0201',dt:'18 Aug 2025',sv:'Moderate harm',sc:'bd-m',tp:'Risk stratification',se:'Community mental health',rg:'London (anon)',ti:'Risk stratification model: 34% disparity in crisis referral rates across ethnic groups',su:'Retrospective audit found lower scores for Black and South Asian patients with equivalent presentations. Model live 14 months before clinical governance review triggered audit.',fc:['Training data unrepresentative of local population','Pre-deployment EIA insufficient','No post-deployment equity monitoring'],lrn:'Risk stratification tools must undergo mandatory post-deployment equity auditing at 3, 6 and 12 months.',tg:['Algorithmic bias','Health inequalities','Equity audit'],out:'Led to ALERT-2026-003 (active). NHS England commissioned independent equity review across 11 mental health trusts.'},
-  {id:'UKHAI-2025-0233',dt:'01 Sep 2025',sv:'Severe harm',sc:'bd-s',tp:'Diagnostic imaging AI',se:'Screening programme',rg:'North West England (anon)',ti:'Retinopathy AI graded borderline-quality image without enforcing repeat; vision loss',su:'System allowed AI grading of borderline-quality image. "No retinopathy" issued. Proliferative retinopathy found 12 months later; vision loss in one eye.',fc:['System allowed grading of borderline images','Quality flag in metadata only','Repeat protocol paper-based'],lrn:'AI diagnostic systems must enforce mandatory pre-conditions as system constraints, not advisory flags.',tg:['Diabetic retinopathy','Image quality','Screening'],out:null},
-  {id:'UKHAI-2025-0267',dt:'29 Oct 2025',sv:'Severe harm',sc:'bd-s',tp:'Diagnostic imaging AI',se:'Screening programme',rg:'South West England (anon)',ti:'AI-assisted mammography false negative on malignant lesion; 11-month diagnostic delay',su:'AI and primary radiologist both assessed borderline case as normal. Malignant lesion found at next cycle 11 months later; retrospective review confirmed lesion visible at original imaging.',fc:['AI-radiologist concurrence threshold too conservative','No mandatory second-reader for concurred borderline cases','AI confidence score absent from audit trail'],lrn:'Second-reader review must not be removed on efficiency grounds for high-consequence borderline findings.',tg:['Diagnostic error','False negative','Cancer screening'],out:'Led to ALERT-2025-006. Mandatory second-reader implemented across 7 screening programmes. MHRA opened formal post-market review.'},
-  {id:'UKHAI-2025-0299',dt:'11 Nov 2025',sv:'Low harm',sc:'bd-l',tp:'NLP / ambient scribe',se:'Secondary care — acute',rg:'Wales (anon)',ti:'AI discharge summary omitted contrast allergy and follow-up; not identified at countersignature',su:'Newly identified contrast allergy and cardiology follow-up absent from AI summary. Countersigning clinician did not identify omissions. Allergy unknown at subsequent CT at different trust.',fc:['Sign-off lacked active verification of allergy and follow-up fields','No mandatory fields for critical safety information','No cross-check at generation'],lrn:'AI discharge summaries must require active clinician confirmation of allergy status and follow-up arrangements.',tg:['Discharge safety','Allergy','Follow-up'],out:'Led to ALERT-2026-001. Same manufacturer as UKHAI-2025-0134; pattern recognised across both incidents.'},
-  {id:'UKHAI-2026-0012',dt:'07 Jan 2026',sv:'Near miss',sc:'bd-n',tp:'Mental health / wellbeing app',se:'Community mental health',rg:'Wales (anon)',ti:'Conversational AI failed to escalate suicidal ideation disclosed in colloquial phrasing',su:'App failed to trigger crisis pathway when user disclosed suicidal ideation using indirect language. Standard CBT module continued. User contacted crisis team 90 minutes later.',fc:['Intent recognition trained on formal language only','Escalation based on keyword matching not semantics','No human fallback within 30-minute session'],lrn:'Mental health AI must use semantic intent recognition for crisis detection. Human escalation fallback must be available within defined windows.',tg:['Mental health','Crisis escalation','Safeguarding'],out:null},
-  {id:'UKHAI-2026-0031',dt:'14 Feb 2026',sv:'Moderate harm',sc:'bd-m',tp:'Clinical decision support',se:'Secondary care — elective',rg:'London (anon)',ti:'AI prior authorisation denied knee replacement on incomplete data; 9-week delay before override',su:'Tool denied total knee replacement based on structured data only, missing 18 months of physiotherapy documentation and Oxford Knee Score 11/48 in free text.',fc:['AI accessed structured data only; free text not processed','No automatic escalation below Oxford Knee Score threshold','Override accessible to specialist consultant only'],lrn:'AI prior authorisation tools relying on structured data alone are insufficient for complex elective decisions.',tg:['Prior authorisation','Elective care','Data completeness'],out:null},
-  {id:'UKHAI-2026-0044',dt:'03 Mar 2026',sv:'No harm',sc:'bd-z',tp:'Virtual ward / remote monitoring',se:'Secondary care — community',rg:'East of England (anon)',ti:'Deterioration model: 23 false-positive alerts in 48 hours; alert fatigue reduced review frequency',su:'No genuine deterioration across 23 alerts. Team reduced review frequency. No harm. Model not recalibrated after recent medication change.',fc:['No clinician feedback mechanism for thresholds','Medication change not reflected in model baseline','No suppression of repeated identical alerts'],lrn:'Virtual ward AI must support clinician-accessible threshold adjustment. Medication changes must trigger recalibration review.',tg:['Alert fatigue','Virtual ward','Calibration'],out:null},
+  {id:'UKHAI-2025-0055',dt:'19 Feb 2025',sv:'Moderate harm',sc:'bd-m',tp:'Clinical decision support',se:'Emergency department',rg:'Yorkshire (anon)',ti:'ED triage AI assigned low acuity to atypical MI; 4-hour delay in troponin testing',su:'AI assigned Priority 4 to a 67-year-old with jaw pain, nausea and fatigue. Training overweighted classic chest pain. Troponin delayed 4 hours; NSTEMI diagnosed.',fc:['Training overweighted typical cardiac presentations','No low-confidence flag for clinical override','Atypical presentations underrepresented'],lrn:'AI triage must perform equitably across atypical presentations. Low-confidence outputs must surface to the clinician.',tg:['Triage','Diagnostic delay'],
+   entity:'AI',intent:'Unintentional',timing:'Post-deployment',domain:'1.3',domainName:'Unequal performance across groups',out:null},
+  {id:'UKHAI-2025-0089',dt:'14 Mar 2025',sv:'Near miss',sc:'bd-n',tp:'Clinical decision support',se:'Secondary care — acute',rg:'North of England (anon)',ti:'Sepsis prediction algorithm silent on deteriorating patient due to incomplete EHR data ingestion',su:'Key physiological parameters not ingested in expected window. No alert generated. Ward nurse identified deterioration on NEWS2 before harm.',fc:['Incomplete EHR data pipeline','No alert for missing inputs','Over-reliance on AI without completeness check'],lrn:'Data completeness checks must surface before AI output is displayed. Uncertainty must be communicated, not silenced.',tg:['EHR integration','Alert design'],
+   entity:'AI + Human',intent:'Unintentional',timing:'Post-deployment',domain:'7',domainName:'AI System Safety, Failures &amp; Limitations',out:'Manufacturer issued product update v2.3.1 adding data ingestion failure alerts. Trust confirmed deployment. ALERT-2025-004 closed.'},
+  {id:'UKHAI-2025-0112',dt:'22 Apr 2025',sv:'Low harm',sc:'bd-l',tp:'Prescribing / EPMA',se:'Secondary care — acute',rg:'East Midlands (anon)',ti:'AI drug interaction checker missed interaction absent from outdated knowledge base; minor bleeding',su:'Post-marketing interaction data published 6 weeks prior not loaded. Interaction missed. Minor bleeding before specialist pharmacist identified issue.',fc:['Knowledge base update cycle too slow','No alert when currency below threshold','AI checker displaced pharmacist review'],lrn:'AI drug interaction systems must have defined maximum update intervals linked to regulatory publication timelines.',tg:['Medication safety','EPMA'],
+   entity:'AI',intent:'Unintentional',timing:'Post-deployment',domain:'3.1',domainName:'False or misleading information',out:null},
+  {id:'UKHAI-2025-0134',dt:'02 Jun 2025',sv:'Low harm',sc:'bd-l',tp:'NLP / ambient scribe',se:'Primary care',rg:'Midlands (anon)',ti:'Ambient scribe misattributed resolved allergy status; incorrect prescribing record',su:'Temporal context error conflated allergy history across consultations. Penicillin allergy documented as resolved. Caught at dispensing pharmacy.',fc:['Temporal context errors in NLP output','No mandatory verification of AI-generated allergy fields','Pharmacy safety netting effective'],lrn:'AI-generated allergy fields require mandatory clinician verification before record commit.',tg:['Medication safety','NLP error'],
+   entity:'AI',intent:'Unintentional',timing:'Post-deployment',domain:'3.1',domainName:'False or misleading information',out:'Led to ALERT-2026-001. ScribeAI NHS Edition issued mandatory update adding active allergy verification. Deployed across 14 trusts.'},
+  {id:'UKHAI-2025-0178',dt:'09 Jul 2025',sv:'Near miss',sc:'bd-n',tp:'Clinical decision support',se:'Primary care',rg:'South East England (anon)',ti:'GP triage AI classified acute appendicitis as gastroenteritis; safety-netted by OOH GP',su:'Right iliac fossa pain, nausea and low-grade fever assessed as viral gastroenteritis. OOH GP recognised appendicitis same evening. Laparoscopic appendicectomy next day.',fc:['Probability threshold too conservative','Model trained on self-limiting presentations','No escalation for NICE appendicitis criteria'],lrn:'GP triage AI must incorporate NICE symptom combination rules. Conservative thresholds for surgical emergencies increase missed diagnosis risk.',tg:['GP triage','Appendicitis'],
+   entity:'AI',intent:'Unintentional',timing:'Post-deployment',domain:'7',domainName:'AI System Safety, Failures &amp; Limitations',out:null},
+  {id:'UKHAI-2025-0201',dt:'18 Aug 2025',sv:'Moderate harm',sc:'bd-m',tp:'Risk stratification',se:'Community mental health',rg:'London (anon)',ti:'Risk stratification model: 34% disparity in crisis referral rates across ethnic groups',su:'Retrospective audit found lower scores for Black and South Asian patients with equivalent presentations. Model live 14 months before clinical governance review triggered audit.',fc:['Training data unrepresentative of local population','Pre-deployment EIA insufficient','No post-deployment equity monitoring'],lrn:'Risk stratification tools must undergo mandatory post-deployment equity auditing at 3, 6 and 12 months.',tg:['Algorithmic bias','Health inequalities'],
+   entity:'AI',intent:'Unintentional',timing:'Pre &amp; Post-deployment',domain:'1.1',domainName:'Unfair discrimination &amp; misrepresentation',out:'Led to ALERT-2026-003 (active). NHS England commissioned independent equity review across 11 mental health trusts.'},
+  {id:'UKHAI-2025-0233',dt:'01 Sep 2025',sv:'Severe harm',sc:'bd-s',tp:'Diagnostic imaging AI',se:'Screening programme',rg:'North West England (anon)',ti:'Retinopathy AI graded borderline-quality image without enforcing repeat; vision loss',su:'System allowed AI grading of borderline-quality image. "No retinopathy" issued. Proliferative retinopathy found 12 months later; vision loss in one eye.',fc:['System allowed grading of borderline images','Quality flag in metadata only','Repeat protocol paper-based'],lrn:'AI diagnostic systems must enforce mandatory pre-conditions as system constraints, not advisory flags.',tg:['Retinopathy','Image quality'],
+   entity:'AI + Human',intent:'Unintentional',timing:'Post-deployment',domain:'7',domainName:'AI System Safety, Failures &amp; Limitations',out:null},
+  {id:'UKHAI-2025-0267',dt:'29 Oct 2025',sv:'Severe harm',sc:'bd-s',tp:'Diagnostic imaging AI',se:'Screening programme',rg:'South West England (anon)',ti:'AI-assisted mammography false negative on malignant lesion; 11-month diagnostic delay',su:'AI and primary radiologist both assessed borderline case as normal. Malignant lesion found at next cycle 11 months later; retrospective review confirmed lesion visible at original imaging.',fc:['AI-radiologist concurrence threshold too conservative','No mandatory second-reader for concurred borderline cases','AI confidence score absent from audit trail'],lrn:'Second-reader review must not be removed on efficiency grounds for high-consequence borderline findings.',tg:['Diagnostic error','Cancer screening'],
+   entity:'AI + Human',intent:'Unintentional',timing:'Post-deployment',domain:'5',domainName:'Human-Computer Interaction (overreliance)',out:'Led to ALERT-2025-006. Mandatory second-reader implemented across 7 screening programmes. MHRA opened formal post-market review.'},
+  {id:'UKHAI-2025-0299',dt:'11 Nov 2025',sv:'Low harm',sc:'bd-l',tp:'NLP / ambient scribe',se:'Secondary care — acute',rg:'Wales (anon)',ti:'AI discharge summary omitted contrast allergy and follow-up; not identified at countersignature',su:'Newly identified contrast allergy and cardiology follow-up absent from AI summary. Countersigning clinician did not identify omissions. Allergy unknown at subsequent CT at different trust.',fc:['Sign-off lacked active verification of allergy and follow-up fields','No mandatory fields for critical safety information','No cross-check at generation'],lrn:'AI discharge summaries must require active clinician confirmation of allergy status and follow-up arrangements.',tg:['Discharge safety','Allergy'],
+   entity:'AI + Human',intent:'Unintentional',timing:'Post-deployment',domain:'3.1',domainName:'False or misleading information',out:'Led to ALERT-2026-001. Pattern recognised across same manufacturer.'},
+  {id:'UKHAI-2026-0012',dt:'07 Jan 2026',sv:'Near miss',sc:'bd-n',tp:'Mental health / wellbeing app',se:'Community mental health',rg:'Wales (anon)',ti:'Conversational AI failed to escalate suicidal ideation disclosed in colloquial phrasing',su:'App failed to trigger crisis pathway when user disclosed suicidal ideation using indirect language. Standard CBT module continued. User contacted crisis team 90 minutes later.',fc:['Intent recognition trained on formal language only','Escalation based on keyword matching not semantics','No human fallback within 30-minute session'],lrn:'Mental health AI must use semantic intent recognition for crisis detection. Human escalation fallback must be available within defined windows.',tg:['Mental health','Crisis escalation'],
+   entity:'AI',intent:'Unintentional',timing:'Post-deployment',domain:'7',domainName:'AI System Safety, Failures &amp; Limitations',out:null},
+  {id:'UKHAI-2026-0031',dt:'14 Feb 2026',sv:'Moderate harm',sc:'bd-m',tp:'Clinical decision support',se:'Secondary care — elective',rg:'London (anon)',ti:'AI prior authorisation denied knee replacement on incomplete data; 9-week delay before override',su:'Tool denied total knee replacement based on structured data only, missing 18 months of physiotherapy documentation and Oxford Knee Score 11/48 in free text.',fc:['AI accessed structured data only; free text not processed','No automatic escalation below Oxford Knee Score threshold','Override accessible to specialist consultant only'],lrn:'AI prior authorisation tools relying on structured data alone are insufficient for complex elective decisions.',tg:['Prior authorisation','Elective care'],
+   entity:'AI + Human',intent:'Unintentional',timing:'Post-deployment',domain:'6',domainName:'Socioeconomic &amp; Environmental',out:null},
+  {id:'UKHAI-2026-0044',dt:'03 Mar 2026',sv:'No harm',sc:'bd-z',tp:'Virtual ward / remote monitoring',se:'Secondary care — community',rg:'East of England (anon)',ti:'Deterioration model: 23 false-positive alerts in 48 hours; alert fatigue reduced review frequency',su:'No genuine deterioration across 23 alerts. Team reduced review frequency. No harm. Model not recalibrated after recent medication change.',fc:['No clinician feedback mechanism for thresholds','Medication change not reflected in model baseline','No suppression of repeated identical alerts'],lrn:'Virtual ward AI must support clinician-accessible threshold adjustment. Medication changes must trigger recalibration review.',tg:['Alert fatigue','Calibration'],
+   entity:'AI',intent:'Unintentional',timing:'Post-deployment',domain:'5',domainName:'Human-Computer Interaction (alert fatigue)',out:null},
 ];
 
 var PRODS=[
-  {n:'ClinDecide Pro',tp:'Clinical decision support',mf:'HealthLogic Systems Ltd',c:4,s:'s-n',sl:'Safety notice issued',mhra:'ok'},
-  {n:'ScribeAI NHS Edition',tp:'NLP / ambient scribe',mf:'VoiceHealth Ltd',c:3,s:'s-n',sl:'Safety notice issued',mhra:'ok'},
-  {n:'RiskSight MH',tp:'Risk stratification',mf:'MindMetrics UK Ltd',c:2,s:'s-n',sl:'Safety notice issued',mhra:'ok'},
-  {n:'VisionAssist Mammography',tp:'Diagnostic imaging AI',mf:'RadiClear Medical',c:2,s:'s-n',sl:'Safety notice issued',mhra:'ok'},
-  {n:'RetinaCheck AI',tp:'Diagnostic imaging AI',mf:'SightSystems UK',c:2,s:'s-n',sl:'Safety notice issued',mhra:'ok'},
+  {n:'ClinDecide Pro',tp:'Clinical decision support',mf:'HealthLogic Systems Ltd',c:4,s:'s-n',sl:'Safety notice',mhra:'ok'},
+  {n:'ScribeAI NHS Edition',tp:'NLP / ambient scribe',mf:'VoiceHealth Ltd',c:3,s:'s-n',sl:'Safety notice',mhra:'ok'},
+  {n:'RiskSight MH',tp:'Risk stratification',mf:'MindMetrics UK Ltd',c:2,s:'s-n',sl:'Safety notice',mhra:'ok'},
+  {n:'VisionAssist Mammography',tp:'Diagnostic imaging AI',mf:'RadiClear Medical',c:2,s:'s-n',sl:'Safety notice',mhra:'ok'},
+  {n:'RetinaCheck AI',tp:'Diagnostic imaging AI',mf:'SightSystems UK',c:2,s:'s-n',sl:'Safety notice',mhra:'ok'},
   {n:'WardWatch Pro',tp:'Virtual ward / remote monitoring',mf:'RemoteCare Systems',c:2,s:'s-m',sl:'Active monitoring',mhra:'ok'},
   {n:'TriageFirst',tp:'Clinical decision support',mf:'EmergeTech UK',c:2,s:'s-m',sl:'Active monitoring',mhra:'warn'},
   {n:'SummarisePro',tp:'NLP / ambient scribe',mf:'ClinicalAI Group',c:2,s:'s-m',sl:'Active monitoring',mhra:'warn'},
   {n:'MindCompanion',tp:'Mental health / wellbeing app',mf:'CalmTech Ltd',c:1,s:'s-r',sl:'Under review',mhra:'ok'},
-  {n:'SafeScript AI',tp:'Prescribing / EPMA',mf:'PharmAI Ltd',c:1,s:'s-n',sl:'Safety notice issued',mhra:'ok'},
+  {n:'SafeScript AI',tp:'Prescribing / EPMA',mf:'PharmAI Ltd',c:1,s:'s-n',sl:'Safety notice',mhra:'ok'},
 ];
 
 var ALTS=[
-  {id:'ALERT-2026-003',dt:'15 May 2026',sv:'High',sc:'ah-h',act:true,ti:'Mandatory equity audit — AI risk stratification in mental health',su:'Three incidents of demographic bias in AI risk stratification tools. All NHS trusts using these tools in mental health must complete an equity audit stratified by ethnicity, age, and deprivation.',ac:'Complete equity audit and submit findings to this registry by 30 Jun 2026. Suspend tool use where disparities exceed 20% until audit complete.',dl:'30 Jun 2026 (active)',rel:['UKHAI-2025-0201']},
-  {id:'ALERT-2026-001',dt:'12 Jan 2026',sv:'High',sc:'ah-h',act:false,ti:'Mandatory active verification — AI-generated allergy and medication fields',su:'Multiple incidents of AI-generated allergy status countersigned without active verification. All trusts must implement mandatory active-confirmation workflows.',ac:'Implement mandatory active-confirmation step for allergy fields. Action period closed.',dl:'28 Feb 2026 (closed)',rel:['UKHAI-2025-0134','UKHAI-2025-0299']},
-  {id:'ALERT-2025-009',dt:'14 Oct 2025',sv:'Medium',sc:'ah-m',act:false,ti:'Alert threshold review — virtual ward AI deterioration models',su:'Reports of excessive false-positive alerting causing alert fatigue. Trusts should review threshold configurations and confirm clinician-accessible recalibration is in place.',ac:'Review alert thresholds. Confirm via LFPSE.',dl:'Advisory only',rel:['UKHAI-2026-0044']},
-  {id:'ALERT-2025-006',dt:'22 Jul 2025',sv:'High',sc:'ah-h',act:false,ti:'Mandatory second-reader review — AI-concurred borderline mammography findings',su:'Severe harm: malignant lesion missed by both AI and primary radiologist. All breast screening programmes must implement mandatory second-reader for AI-concurred borderline cases.',ac:'Implement mandatory second-reader. Action period closed.',dl:'30 Sep 2025 (closed)',rel:['UKHAI-2025-0267']},
-  {id:'ALERT-2025-002',dt:'03 Mar 2025',sv:'Low',sc:'ah-l',act:false,ti:'Knowledge base currency check — AI drug interaction modules',su:'Trusts should verify EPMA AI drug interaction knowledge base update cycles are documented.',ac:'Document update interval in clinical safety case.',dl:'Advisory only',rel:['UKHAI-2025-0112']},
+  {id:'ALERT-2026-003',dt:'15 May 2026',sv:'High',sc:'bd-d',act:true,ti:'Mandatory equity audit — AI risk stratification in mental health',su:'Three incidents of demographic bias in AI risk stratification tools. All NHS trusts using these tools in mental health must complete an equity audit stratified by ethnicity, age, and deprivation.',ac:'Complete equity audit and submit findings to this registry by 30 Jun 2026. Suspend tool use where disparities exceed 20% until audit complete.',dl:'30 JUN 2026 · ACTIVE',rel:['UKHAI-2025-0201']},
+  {id:'ALERT-2026-001',dt:'12 Jan 2026',sv:'High',sc:'bd-d',act:false,ti:'Mandatory active verification — AI-generated allergy and medication fields',su:'Multiple incidents of AI-generated allergy status countersigned without active verification. All trusts must implement mandatory active-confirmation workflows.',ac:'Implement mandatory active-confirmation step for allergy fields. Action period closed.',dl:'28 FEB 2026 · CLOSED',rel:['UKHAI-2025-0134','UKHAI-2025-0299']},
+  {id:'ALERT-2025-009',dt:'14 Oct 2025',sv:'Medium',sc:'bd-m',act:false,ti:'Alert threshold review — virtual ward AI deterioration models',su:'Reports of excessive false-positive alerting causing alert fatigue. Trusts should review threshold configurations and confirm clinician-accessible recalibration is in place.',ac:'Review alert thresholds. Confirm via LFPSE.',dl:'ADVISORY ONLY',rel:['UKHAI-2026-0044']},
+  {id:'ALERT-2025-006',dt:'22 Jul 2025',sv:'High',sc:'bd-d',act:false,ti:'Mandatory second-reader review — AI-concurred borderline mammography findings',su:'Severe harm: malignant lesion missed by both AI and primary radiologist. All breast screening programmes must implement mandatory second-reader for AI-concurred borderline cases.',ac:'Implement mandatory second-reader. Action period closed.',dl:'30 SEP 2025 · CLOSED',rel:['UKHAI-2025-0267']},
+  {id:'ALERT-2025-002',dt:'03 Mar 2025',sv:'Low',sc:'bd-z',act:false,ti:'Knowledge base currency check — AI drug interaction modules',su:'Trusts should verify EPMA AI drug interaction knowledge base update cycles are documented and post-marketing data incorporated within 30 days of regulatory publication.',ac:'Document update interval in clinical safety case.',dl:'ADVISORY ONLY',rel:['UKHAI-2025-0112']},
 ];
 
 var TRUSTS=[
@@ -626,13 +697,13 @@ var TRUSTS=[
 ];
 
 var GOV=[
-  {ico:'&#9675;',t:'Purpose',b:'To create a shared, navigable evidence base that clinical safety authors, procurement leads, CNIO and CCIO teams, regulators, and patients can consult when assessing the real-world safety profile of healthcare AI tools. Pre-deployment hazard analyses conducted without post-deployment harm evidence represent a structural patient safety risk.'},
-  {ico:'&#9889;',t:'One-tap reporting design principle',b:'The clinician\'s quiet calculation — flagging a near miss costs time with no visible benefit to the patient — is a structural barrier to safety signal generation. This registry minimises submission friction: a minimal report requires only two fields. Full details are optional. Designed following Luke Kellaway\'s analysis of AVT underreporting: 5 Yellow Card reports across 15M+ consultations is a measurement failure, not a safety record.'},
-  {ico:'&#9636;',t:'Scope',b:'Accepts: (a) patient harms where AI was a direct or proximate cause; (b) near misses prevented by clinical vigilance or safety netting; (c) systemic risks not yet linked to a specific harm event. Reports accepted from clinicians, digital leads, patient safety officers, and patients or carers. Vendor quarterly reports accepted under contractual data-sharing frameworks.'},
-  {ico:'&#9670;',t:'Governance',b:'All submissions reviewed by an independent clinical safety panel before publication. Identifiable information removed before display. Each report assigned a UKHAI reference number. Panel includes: a registered mental health nurse, a DCB0129-qualified clinical safety officer, a lay patient representative, and an independent clinical informaticist. Reports that lead to safety alerts or product updates are linked back to the originating incident — closing the loop for the reporting clinician.'},
-  {ico:'&#9700;',t:'Relationship to existing systems',b:'Does not replace NHS England LFPSE, MHRA Yellow Card, or manufacturer post-market surveillance under the Medical Devices Regulations 2025. MHRA product registration status cross-referenced in product directory.'},
-  {ico:'&#9674;',t:'Legal basis',b:'Operates in alignment with the Health and Social Care (Safety and Quality) Act 2015 and the protected disclosure model in NHS PSIRF. Reports submitted in good faith handled under safe harbour principles equivalent to those governing NHS serious incident reports.'},
-  {ico:'&#9872;',t:'International alignment',b:'Aligned with the UNESCO Recommendation on the Ethics of Artificial Intelligence (2021), EU AI Act Annex III, and AHRQ AI in Healthcare Safety Program (USA). Supports the UK National Commission on the Regulation of AI in Healthcare (2025–26).'},
+  {num:'I',t:'Purpose',b:'To create a shared, navigable evidence base that clinical safety authors, procurement leads, CNIO and CCIO teams, regulators, and patients can consult when assessing the real-world safety profile of healthcare AI tools. Pre-deployment hazard analyses conducted without post-deployment harm evidence represent a structural patient safety risk.'},
+  {num:'II',t:'One-tap reporting principle',b:'The clinician\'s quiet calculation — flagging a near miss costs time with no visible benefit to the patient — is a structural barrier to safety signal generation. This registry minimises submission friction: a minimal report requires only two fields. Designed following Luke Kellaway\'s analysis: 5 Yellow Card reports across 15M+ AVT consultations is a measurement failure, not a safety record.'},
+  {num:'III',t:'Classification using the MIT AI Risk Repository',b:'Each incident is classified against the MIT Causal Taxonomy (Entity · Intent · Timing) and the MIT Domain Taxonomy (7 domains, 24 subdomains). This grounds the registry in peer-reviewed academic infrastructure and gives clinical safety officers a shared vocabulary for DCB0129 hazard analysis. <a href="https://airisk.mit.edu" target="_blank" class="mit-cite-link">airisk.mit.edu</a>'},
+  {num:'IV',t:'Scope',b:'Accepts: (a) patient harms where AI was a direct or proximate cause; (b) near misses prevented by clinical vigilance or safety netting; (c) systemic risks not yet linked to a specific harm event. Reports accepted from clinicians, digital leads, patient safety officers, and patients or carers. Vendor quarterly reports accepted under contractual data-sharing frameworks.'},
+  {num:'V',t:'Governance',b:'All submissions reviewed by an independent clinical safety panel before publication. Identifiable information removed before display. Each report assigned a UKHAI reference number. Panel includes: a registered mental health nurse, a DCB0129-qualified clinical safety officer, a lay patient representative, and an independent clinical informaticist. Reports that lead to safety alerts or product updates are linked back to the originating incident — closing the loop for the reporting clinician.'},
+  {num:'VI',t:'Relationship to existing systems',b:'Does not replace NHS England LFPSE, MHRA Yellow Card, or manufacturer post-market surveillance under the Medical Devices Regulations 2025. MHRA product registration status cross-referenced in product directory. Supports HSSIB Safety observation O/2026/087 on national sharing of ePMA safety learning.'},
+  {num:'VII',t:'Legal basis &amp; international alignment',b:'Operates in alignment with the Health and Social Care (Safety and Quality) Act 2015 and the protected disclosure model in NHS PSIRF. Reports submitted in good faith handled under safe harbour principles. Aligned with the UNESCO Recommendation on the Ethics of AI (2021), EU AI Act Annex III, and AHRQ AI in Healthcare Safety Program (USA).'},
 ];
 
 var UR=[
@@ -644,33 +715,43 @@ var UR=[
   {n:'Mental health / wellbeing apps',est:'3M+ sessions',reports:38,rate:'0.001%',low:true},
 ];
 
+/* MIT Domain distribution — derived from incident classification */
+var DOM=[
+  {num:'1',name:'Discrimination &amp; Toxicity',count:2},
+  {num:'3',name:'Misinformation',count:3},
+  {num:'5',name:'Human-Computer Interaction',count:2},
+  {num:'6',name:'Socioeconomic &amp; Environmental',count:1},
+  {num:'7',name:'AI System Safety, Failures &amp; Limitations',count:4},
+];
+
 function IC(inc){
-  return '<div class="inc" data-ti="'+inc.ti.toLowerCase()+'" data-sv="'+inc.sv+'" data-tp="'+inc.tp+'" data-tg="'+inc.tg.join(' ').toLowerCase()+'">'
-    +'<div class="im"><span class="iid">'+inc.id+' &middot; '+inc.dt+'</span><span class="badge '+inc.sc+'">'+inc.sv+'</span></div>'
-    +'<div class="iti">'+inc.ti+'</div>'
-    +'<div class="ifoot"><div class="chips"><span class="chip">'+inc.tp+'</span><span class="chip">'+inc.se+'</span><span class="chip">'+inc.rg+'</span>'
+  return '<div class="inc" data-ti="'+inc.ti.toLowerCase()+'" data-sv="'+inc.sv+'" data-tp="'+inc.tp+'" data-dom="'+inc.domain.split('.')[0]+'" data-tg="'+inc.tg.join(' ').toLowerCase()+'">'
+    +'<div class="inc-meta-row"><span class="inc-id">'+inc.id+'</span><span class="inc-sep">·</span><span class="inc-date">'+inc.dt+'</span><span class="inc-sep">·</span><span class="badge '+inc.sc+'">'+inc.sv+'</span></div>'
+    +'<div class="inc-title">'+inc.ti+'</div>'
+    +'<div class="inc-foot"><div class="tags"><span class="chip">'+inc.tp+'</span><span class="chip">'+inc.se+'</span><span class="chip">'+inc.rg+'</span>'
     +inc.tg.map(function(t){return '<span class="tag">'+t+'</span>';}).join('')
-    +(inc.out?'<span class="otag">&#10003; Outcome published</span>':'')
-    +'</div><button type="button" class="xb" id="xb-'+inc.id+'" onclick="XD(\''+inc.id+'\')">View detail</button></div>'
+    +(inc.out?'<span class="otag">Outcome published</span>':'')
+    +'</div><button type="button" class="xb" id="xb-'+inc.id+'" onclick="XD(\''+inc.id+'\')">Read more</button></div>'
     +'<div class="det" id="dt-'+inc.id+'"><div class="det-inner"><div class="di">'
-    +'<div class="dl">Summary</div><div class="db">'+inc.su+'</div>'
-    +'<div class="dl">Contributing factors</div><div class="db"><ul>'+inc.fc.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul></div>'
-    +'<div class="learn"><div class="dl" style="color:var(--gr700)">&#9675; Key learning</div><div class="db" style="color:var(--gr700);margin-bottom:0">'+inc.lrn+'</div></div>'
-    +(inc.out?'<div class="outbox"><div class="dl" style="color:var(--pu700)">&#9654; What happened next</div><div class="db" style="color:var(--pu700);margin-bottom:0">'+inc.out+'</div></div>':'')
+    +'<div class="taxo"><div class="taxo-grid">'
+    +'<div class="taxo-item"><div class="dl">— Entity</div><div class="taxo-val">'+inc.entity+'</div></div>'
+    +'<div class="taxo-item"><div class="dl">— Intent</div><div class="taxo-val">'+inc.intent+'</div></div>'
+    +'<div class="taxo-item"><div class="dl">— Timing</div><div class="taxo-val">'+inc.timing+'</div></div>'
+    +'</div><div class="taxo-domain">MIT Domain <strong>'+inc.domain+'</strong> — '+inc.domainName+'</div></div>'
+    +'<div class="dl">— Summary</div><div class="db">'+inc.su+'</div>'
+    +'<div class="dl">— Contributing factors</div><div class="db"><ul>'+inc.fc.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul></div>'
+    +'<div class="learn"><div class="dl">— Key learning</div><div class="db">'+inc.lrn+'</div></div>'
+    +(inc.out?'<div class="outbox"><div class="dl">— What happened next</div><div class="db">'+inc.out+'</div></div>':'')
     +'</div></div></div></div>';
 }
 
-function XD(id){
-  var d=document.getElementById('dt-'+id),b=document.getElementById('xb-'+id);
-  d.classList.toggle('on');
-  b.textContent=d.classList.contains('on')?'Hide detail':'View detail';
-}
+function XD(id){var d=document.getElementById('dt-'+id),b=document.getElementById('xb-'+id);d.classList.toggle('on');b.textContent=d.classList.contains('on')?'Hide detail':'Read more';}
 
 function FI(){
-  var s=document.getElementById('si').value.toLowerCase(),sv=document.getElementById('sv2').value,tp=document.getElementById('st3').value;
+  var s=document.getElementById('si').value.toLowerCase(),sv=document.getElementById('sv2').value,tp=document.getElementById('st3').value,dom=document.getElementById('sdom').value;
   var n=0;
   document.querySelectorAll('#b-inc .inc').forEach(function(c){
-    var ok=(!s||(c.dataset.ti.indexOf(s)>=0||c.dataset.tg.indexOf(s)>=0))&&(!sv||c.dataset.sv===sv)&&(!tp||c.dataset.tp===tp);
+    var ok=(!s||(c.dataset.ti.indexOf(s)>=0||c.dataset.tg.indexOf(s)>=0))&&(!sv||c.dataset.sv===sv)&&(!tp||c.dataset.tp===tp)&&(!dom||c.dataset.dom===dom);
     c.style.display=ok?'block':'none';if(ok)n++;
   });
   document.getElementById('bco').textContent=n+' incident'+(n!==1?'s':'');
@@ -728,55 +809,58 @@ function bChart(id,data,mx){
 function hChart(id,data,mx){
   var el=document.getElementById(id);if(!el)return;
   el.innerHTML=data.map(function(d,i){
-    return '<div><div class="hbl">'+d.l+'</div><div class="hbt"><div class="hbg"><div class="hbf" style="width:'+Math.round(d.v/mx*100)+'%;animation-delay:'+(i*40)+'ms"></div></div><span class="hbv">'+d.v+'</span></div></div>';
+    return '<div><div class="hbl"><span>'+d.l+'</span><span class="hbl-v">'+d.v+'</span></div><div class="hbg"><div class="hbf" style="width:'+Math.round(d.v/mx*100)+'%;animation-delay:'+(i*40)+'ms"></div></div></div>';
   }).join('');
 }
 
-// Render
 document.getElementById('d-inc').innerHTML=INC.slice(0,3).map(IC).join('');
 document.getElementById('b-inc').innerHTML=INC.map(IC).join('');
 
 document.getElementById('p-list').innerHTML=PRODS.map(function(p){
-  var mh=p.mhra==='ok'?'<span class="mhra-ok">&#10003; MHRA registered</span>':'<span class="mhra-w">&#9888; MHRA registration unverified</span>';
+  var mh=p.mhra==='ok'?'<span class="mhra-ok">✓ MHRA registered</span>':'<span class="mhra-w">⚠ MHRA unverified</span>';
   return '<div class="pcard" data-n="'+p.n.toLowerCase()+'" data-mf="'+p.mf.toLowerCase()+'" data-tp="'+p.tp+'">'
     +'<div><div class="pname">'+p.n+'</div><div class="prow"><span class="chip">'+p.tp+'</span><span class="chip">'+p.mf+'</span></div>'
     +'<div class="prow"><span class="'+p.s+'">'+p.sl+'</span>'+mh+'</div></div>'
-    +'<div><div class="pnum">'+p.c+'</div><div class="pnl">incident'+(p.c!==1?'s':'')+'</div></div></div>';
+    +'<div><div class="pnum">'+p.c+'</div><div class="pnl">'+(p.c===1?'incident':'incidents')+'</div></div></div>';
 }).join('');
 
 document.getElementById('al-list').innerHTML=ALTS.map(function(a){
   return '<div class="acard'+(a.act?' aa':'')+'">'
-    +'<div class="ahead"><div><span class="aid">'+a.id+' &middot; '+a.dt+'</span>'+(a.act?'<span class="apill">Active</span>':'')+'</div><span class="badge '+a.sc+'">'+a.sv+'</span></div>'
+    +'<div class="ahead"><div><span class="aid">'+a.id+' · '+a.dt+'</span>'+(a.act?'<span class="apill">Active</span>':'')+'</div><span class="badge '+a.sc+'">'+a.sv+'</span></div>'
     +'<div class="atitle">'+a.ti+'</div><div class="asum">'+a.su+'</div>'
-    +'<div class="actbox"><div class="dl">&#9654; Required action</div><div class="actt">'+a.ac+'</div></div>'
-    +'<div class="afoot"><span class="dlt">&#9201; '+a.dl+'</span><div class="chips">'
+    +'<div class="actbox"><div class="dl">— Required action</div><div class="actt">'+a.ac+'</div></div>'
+    +'<div class="afoot"><span class="dlt">'+a.dl+'</span><div class="tags">'
     +a.rel.map(function(r){return '<button type="button" class="rb" onclick="VI(\''+r+'\')">'+r+'</button>';}).join('')
     +'</div></div></div>';
 }).join('');
 
 document.getElementById('t-list').innerHTML=TRUSTS.map(function(t){
   var cls=t.lead==='yes'?'tly':t.lead==='part'?'tlp':'tln';
-  var lbl=t.lead==='yes'?'&#10003; Named lead':t.lead==='part'?'&#9711; In progress':'&#9888; No named lead';
+  var lbl=t.lead==='yes'?'✓ Named lead':t.lead==='part'?'○ In progress':'⚠ No named lead';
   return '<div class="tcard" data-n="'+t.n.toLowerCase()+'" data-lead="'+t.lead+'">'
     +'<div><div class="tname">'+t.n+'</div><div class="tsub">'+t.rg+'</div><span class="'+cls+'">'+lbl+'</span>'
-    +(t.lname?'<div style="font-size:11px;color:var(--g500);margin-top:5px">'+t.lname+'</div>':'')
-    +'</div><div style="text-align:right;flex-shrink:0"><div class="trn">'+t.r+'</div><div class="trl">reports</div></div></div>';
+    +(t.lname?'<div style="font-size:11px;color:var(--muted);margin-top:6px">'+t.lname+'</div>':'')
+    +'</div><div style="text-align:right;flex-shrink:0"><div class="trn">'+t.r+'</div><div class="trl">'+(t.r===1?'report':'reports')+'</div></div></div>';
 }).join('');
 
 document.getElementById('g-list').innerHTML=GOV.map(function(g){
-  return '<div class="gcard"><div class="gtit"><div class="gico">'+g.ico+'</div>'+g.t+'</div><div class="gbod">'+g.b+'</div></div>';
+  return '<div class="gcard"><div class="gtit"><span class="gnum">'+g.num+'</span>'+g.t+'</div><div class="gbod">'+g.b+'</div></div>';
 }).join('');
 
 document.getElementById('ur-list').innerHTML=UR.map(function(d){
   var barW=parseFloat(d.rate)*10000;barW=Math.max(Math.min(barW,100),0.4);
-  return '<div class="urcard"><div class="urname">'+d.n+'</div><div class="ursub">'+d.reports+' reports vs '+d.est+'</div>'
+  return '<div class="urcard"><div class="urname">'+d.n+'</div><div class="ursub">'+d.reports+' reports vs '+d.est+' · rate '+d.rate+'</div>'
     +'<div class="urtrack"><div class="urfill" style="width:'+barW+'%"></div></div>'
-    +'<div class="urstat"><span class="ursi">Reports: <strong>'+d.reports+'</strong></span><span class="ursi">Deployments: <strong>'+d.est+'</strong></span><span class="ursi">Rate: <strong>'+d.rate+'</strong></span></div>'
-    +(d.low?'<div class="urwarn">&#9888; Report rate suggests significant underreporting — the signal may be absent, not the harm.</div>':'')
+    +'<div class="urstat"><span class="ursi">Reports <strong>'+d.reports+'</strong></span><span class="ursi">Deployments <strong>'+d.est+'</strong></span></div>'
+    +(d.low?'<div class="urwarn">— Report rate suggests significant underreporting. The signal may be absent, not the harm.</div>':'')
     +'</div>';
 }).join('');
 
-var SEV=[{l:'Near miss',v:163,c:'#dbeafe'},{l:'No harm',v:99,c:'#dcfce7'},{l:'Low harm',v:35,c:'#fef9c3'},{l:'Moderate harm',v:31,c:'#ffedd5'},{l:'Severe harm',v:23,c:'#fee2e2'},{l:'Death',v:5,c:'#fca5a5'}];
+document.getElementById('ch-dom').innerHTML=DOM.map(function(d){
+  return '<div class="dom-card"><div class="dom-num">'+d.num+'</div><div class="dom-name">'+d.name+'</div><div class="dom-count">'+d.count+' '+(d.count===1?'incident':'incidents')+'</div></div>';
+}).join('');
+
+var SEV=[{l:'Near miss',v:163,c:'#D8E2EE'},{l:'No harm',v:99,c:'#E4ECCC'},{l:'Low harm',v:35,c:'#FAEDD0'},{l:'Moderate harm',v:31,c:'#F0D9C2'},{l:'Severe harm',v:23,c:'#F2DDD2'},{l:'Death',v:5,c:'#D4A89D'}];
 document.getElementById('ch-sev').innerHTML=SEV.map(function(d){
   return '<div class="srow"><div class="sdot" style="background:'+d.c+'"></div><span class="slbl">'+d.l+'</span><div class="sbg"><div class="sf2" style="width:'+Math.round(d.v/356*100)+'%;background:'+d.c+'"></div></div><span class="sval">'+d.v+'</span></div>';
 }).join('');
