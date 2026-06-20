@@ -64,14 +64,6 @@ h1.logo em{color:var(--orange);font-style:italic}
 .stat-v.o{color:var(--orange)}
 .stat-v.r{color:var(--red)}
 
-/* WHO Banner */
-#who-banner{background:var(--card2);border-bottom:1px solid var(--border);flex-shrink:0;padding:10px 28px}
-.who-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.who-badge{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);background:var(--bluet);border:1px solid var(--blueb);padding:3px 10px;border-radius:3px;white-space:nowrap;font-weight:500}
-.who-stats{display:flex;gap:20px;flex-wrap:wrap}
-.who-stat{font-size:12px;color:var(--ink2);display:flex;align-items:center;gap:6px}
-.who-stat strong{font-weight:600;color:var(--ink)}
-.who-sep{color:var(--border2)}
 
 /* Nav */
 #nav{background:var(--bg);border-bottom:1px solid var(--border);flex-shrink:0;overflow-x:auto}
@@ -108,15 +100,6 @@ h1.logo em{color:var(--orange);font-style:italic}
 .ctl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink3);margin-bottom:9px}
 .cth{font-family:var(--serif);font-size:17px;color:var(--ink);font-weight:400;margin-bottom:12px;letter-spacing:-0.01em}
 
-/* WHO context card */
-.who-card{background:var(--bluet);border:1px solid var(--blueb);border-left:2px solid var(--blue);border-radius:10px;padding:16px;margin-bottom:18px}
-.who-card-hd{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.who-card-hd::before{content:'';width:14px;height:1px;background:var(--blue)}
-.who-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.who-item{background:var(--card);border:1px solid var(--blueb);border-radius:8px;padding:12px 14px;text-align:center}
-.who-num{font-family:var(--serif);font-size:30px;color:var(--blue);font-weight:400;line-height:1;letter-spacing:-0.02em}
-.who-lbl{font-size:11px;color:var(--ink2);margin-top:5px;line-height:1.4}
-.who-src{font-family:var(--mono);font-size:10px;color:var(--blue);margin-top:9px;font-style:italic}
 
 /* Alert banner */
 .abanner{background:var(--redt);border:1px solid var(--red);border-left:2px solid var(--red);border-radius:10px;padding:12px 15px;display:flex;gap:10px;margin-bottom:18px}
@@ -126,26 +109,27 @@ h1.logo em{color:var(--orange);font-style:italic}
 .alb{color:var(--red);text-decoration:underline;background:none;border:none;cursor:pointer;font:inherit;font-size:14px;padding:0}
 
 /* Quick report */
-.qr{background:var(--ink);border-radius:10px;padding:14px 17px;margin-bottom:18px}
-.qr-top{display:flex;align-items:center;gap:8px;margin-bottom:11px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.1)}
-.qr-ps{color:var(--orange);font-family:var(--mono);font-size:12px}
-.qr-cmd{color:rgba(245,239,228,.65);font-family:var(--mono);font-size:12px}
-.qr-crs{display:inline-block;width:8px;height:13px;background:var(--orange);animation:blink 1.1s infinite;margin-left:2px;vertical-align:middle}
-@keyframes blink{0%,49%{opacity:.9}50%,100%{opacity:0}}
-.qr-hint{font:italic 12px var(--sans);color:rgba(245,239,228,.35);margin-left:auto}
+.qr{background:var(--orange);border:1px solid var(--orange2);border-radius:10px;padding:15px 18px 13px;margin-bottom:18px;box-shadow:0 1px 3px rgba(168,74,6,.15)}
+.qr-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.22)}
+.qr-cmd{color:#fff;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.02em}
+.qr-hint{font:italic 12px var(--sans);color:rgba(255,255,255,.82);margin-left:auto}
+.qr-crs{display:inline-block;width:10px;height:16px;background:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.35);margin-left:3px;vertical-align:middle;animation:blink 1.05s ease-in-out infinite;border-radius:1px}
+@media(prefers-reduced-motion:reduce){.qr-crs{animation:none;opacity:.9}}
+@keyframes blink{50%{opacity:0}}
 .qr-btns{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}
-.qrb{min-height:34px;font:500 13px var(--sans);padding:5px 13px;border-radius:4px;cursor:pointer;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:rgba(245,239,228,.85);transition:background 120ms ease,transform 80ms var(--ease)}
-.qrb:active{transform:scale(0.96)}
-.qrb.dng{background:rgba(184,48,48,.18);border-color:rgba(184,48,48,.45);color:#F4A8A8}
-.qrb.amb{background:rgba(154,100,8,.18);border-color:rgba(154,100,8,.45);color:#F0CE82}
-.qr-note{font:12px/1.6 var(--sans);color:rgba(245,239,228,.35)}
+.qrb{min-height:36px;font:600 13px var(--sans);padding:6px 14px;border-radius:5px;cursor:pointer;border:1px solid rgba(255,255,255,.7);background:#fff;color:var(--ink);transition:transform 160ms ease-out,background 140ms ease,box-shadow 140ms ease;letter-spacing:-.005em}
+.qrb:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.qrb:active{transform:scale(0.97)}
+@media(hover:hover) and (pointer:fine){.qrb:hover{background:rgba(255,255,255,.94);box-shadow:0 1px 4px rgba(0,0,0,.08)}}
+.qrb.dng{color:#9C1C1C;border-color:rgba(156,28,28,.28)}
+.qrb.amb{color:var(--orange2);border-color:rgba(168,74,6,.3)}
+.qr-note{font:12px/1.6 var(--sans);color:rgba(255,255,255,.78);margin-top:10px}
 
 /* Incident cards */
 .inc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:11px;box-shadow:0 1px 3px rgba(21,16,10,.04);transition:border-color 160ms ease,box-shadow 160ms ease}
 @media(hover:hover) and (pointer:fine){.inc:hover{border-color:var(--border2);box-shadow:0 3px 12px rgba(21,16,10,.08)}}
 .imeta{display:flex;align-items:center;gap:9px;margin-bottom:7px;flex-wrap:wrap}
 .iid{font-family:var(--mono);font-size:10px;color:var(--ink3)}
-.iid::before{content:' BB  ';color:var(--orange)}
 .idt{font-family:var(--mono);font-size:10px;color:var(--ink3)}
 .isep{color:var(--ink3);font-size:10px}
 .ititle{font-family:var(--serif);font-size:19px;line-height:1.3;color:var(--ink);font-weight:400;margin-bottom:11px;letter-spacing:-0.01em}
@@ -196,13 +180,14 @@ h1.logo em{color:var(--orange);font-style:italic}
 .rcnt{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink3);margin-bottom:9px}
 
 /* Charts */
-.bw{display:flex;gap:4px;align-items:flex-end;height:105px;padding-bottom:19px;position:relative}
+.bw{display:flex;gap:4px;align-items:flex-end;height:122px;padding-bottom:19px;position:relative}
 .bax{position:absolute;bottom:19px;left:0;right:0;height:1px;background:var(--border)}
 .bc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative}
 .bf{width:100%;background:var(--ink2);border-radius:2px 2px 0 0;min-height:2px;opacity:.75;transform-origin:bottom;animation:bG 420ms var(--ease) both;transition:opacity 130ms ease,background 130ms ease}
 @keyframes bG{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 @media(hover:hover) and (pointer:fine){.bf:hover{opacity:1;background:var(--orange)}}
 .bl{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:9px;color:var(--ink3);white-space:nowrap}
+.bv{font-family:var(--mono);font-size:9px;color:var(--ink2);font-weight:500;line-height:1;margin-bottom:3px}
 .hbr{display:flex;flex-direction:column;gap:8px}
 .hbl{font-size:12px;color:var(--ink2);margin-bottom:2px;display:flex;justify-content:space-between}
 .hbv{font-family:var(--mono);font-size:11px;color:var(--ink3)}
@@ -216,21 +201,6 @@ h1.logo em{color:var(--orange);font-style:italic}
 .sfil{height:100%;border-radius:2px;animation:hbG 500ms var(--ease) both}
 .sval{font-family:var(--mono);font-size:11px;color:var(--ink3);min-width:26px;text-align:right}
 
-/* WHO benchmark section */
-.who-bench{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px}
-.who-bench-hd{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);margin-bottom:13px;display:flex;align-items:center;gap:9px}
-.who-bench-hd::before{content:'';width:14px;height:1px;background:var(--blue)}
-.bench-rows{display:flex;flex-direction:column;gap:10px}
-.bench-row{display:grid;grid-template-columns:200px 1fr 1fr;gap:12px;align-items:center}
-.bench-label{font-size:13px;color:var(--ink2)}
-.bench-bar-wrap{display:flex;flex-direction:column;gap:3px}
-.bench-bar-lbl{font-family:var(--mono);font-size:10px;color:var(--ink3);display:flex;justify-content:space-between}
-.bench-bg{height:10px;border-radius:2px;background:var(--border);overflow:hidden}
-.bench-fill-uk{height:100%;background:var(--orange);border-radius:2px;opacity:.8}
-.bench-fill-who{height:100%;background:var(--blue);border-radius:2px;opacity:.7}
-.bench-legend{display:flex;gap:16px;margin-bottom:12px}
-.bench-leg-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2)}
-.bench-leg-dot{width:10px;height:10px;border-radius:2px}
 
 /* MIT domain grid */
 .dom-g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
@@ -326,9 +296,14 @@ h1.logo em{color:var(--orange);font-style:italic}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(212,96,10,.1)}
 .fdisc{font-size:12px;color:var(--ink3);font-style:italic;border:1px solid var(--border);border-radius:6px;padding:10px 13px;margin-bottom:14px;line-height:1.65;background:var(--card2)}
 .infob{background:var(--otint);border:1px solid var(--oborder);border-radius:6px;padding:10px 13px;font-size:13px;color:var(--orange2);margin-bottom:14px;line-height:1.6}
-.mrep{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:14px 17px;margin-bottom:17px}
-.mrey{font-family:var(--mono);font-size:10px;color:var(--orange);text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px}
-.mret{font-family:var(--serif);font-size:19px;color:var(--ink);font-weight:400;margin-bottom:12px;letter-spacing:-.01em}
+.mrep{background:var(--orange);border:1px solid var(--orange2);border-radius:10px;padding:18px 20px;margin-bottom:17px;color:#fff;box-shadow:0 1px 3px rgba(168,74,6,.15)}
+.mrey{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.92);text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px;font-weight:500}
+.mrep .fg label{color:#fff;font-weight:500}
+.mrep .fg input,.mrep .fg select{background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.4)}
+.mrep .fg input:focus,.mrep .fg select:focus{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.4)}
+.mrep .btn{background:#fff;color:var(--orange2);border:1px solid #fff;font-weight:600}
+@media(hover:hover) and (pointer:fine){.mrep .btn:hover{background:rgba(255,255,255,.92);color:var(--orange2)}}
+.mret{font-family:var(--serif);font-size:20px;color:#fff;font-weight:400;margin-bottom:14px;letter-spacing:-.01em}
 .btn{min-height:42px;background:var(--orange);color:#fff;padding:9px 20px;border-radius:6px;border:none;font:600 14px var(--sans);cursor:pointer;letter-spacing:-.005em;transition:background 140ms ease,transform 80ms var(--ease)}
 .btn:active{transform:scale(0.97)}
 @media(hover:hover) and (pointer:fine){.btn:hover{background:var(--orange2)}}
@@ -348,18 +323,19 @@ h1.logo em{color:var(--orange);font-style:italic}
 .gfoot{font-size:12px;color:var(--ink3);border-top:1px solid var(--border);padding-top:12px;margin-top:4px;line-height:1.8;font-style:italic}
 
 /* Footer */
-footer{background:var(--ink);padding:10px 28px;text-align:center;flex-shrink:0}
-footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);letter-spacing:.06em;text-transform:uppercase}
+footer{background:var(--orange2);padding:12px 28px;text-align:center;flex-shrink:0;border-top:2px solid var(--orange)}
+footer p{font-family:var(--mono);font-size:11px;color:#fff;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+footer a{color:#fff;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;transition:opacity 140ms ease}
+@media(hover:hover) and (pointer:fine){footer a:hover{opacity:.8}}
 
 @media(max-width:768px){
-  .g2,.who-grid,.dom-g,.bench-row{grid-template-columns:1fr}
+  .g2,.dom-g{grid-template-columns:1fr}
   .g3{grid-template-columns:1fr 1fr}
   .stats-inner{grid-template-columns:repeat(3,1fr)}
   .stat:nth-child(n+5){display:none}
   .hdr-inner{flex-direction:column;gap:10px}
   .hdr-right{text-align:left}
   .pi{padding:14px 16px}
-  .who-inner{gap:12px}
   .taxo-g{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
@@ -376,7 +352,7 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
     <p class="logo-sub">A national, publicly searchable record of risks, near misses and reported harms from healthcare AI deployments. Grounded in the MIT AI Risk Repository taxonomy.</p>
   </div>
   <div class="hdr-right">
-    <div class="hdr-meta"><strong>Concept prototype</strong><br>Designed by Sarah Amani &middot; May 2026</div>
+    <div class="hdr-meta"><strong>Concept prototype</strong><br>Sarah Amani &middot; Jun 2026</div>
     <span class="vtag">v0.9</span>
   </div>
 </div>
@@ -390,22 +366,6 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
   <div class="stat"><div class="stat-l">Alerts issued</div><div class="stat-v o" id="s-a">0</div></div>
   <div class="stat"><div class="stat-l">Trusts reporting</div><div class="stat-v" id="s-tr">0</div></div>
   <div class="stat"><div class="stat-l">Report rate vs deploy</div><div class="stat-v r" id="s-r">0%</div></div>
-</div>
-</div>
-
-<!-- WHO European Region contextual banner — new in v0.9 -->
-<div id="who-banner">
-<div class="who-inner">
-  <span class="who-badge">WHO European Region 2026</span>
-  <div class="who-stats">
-    <span class="who-stat"><strong>48%</strong> of Member States cite legal uncertainty as the #1 AI barrier</span>
-    <span class="who-sep">|</span>
-    <span class="who-stat"><strong>Only 24%</strong> offer in-service AI training for health staff</span>
-    <span class="who-sep">|</span>
-    <span class="who-stat"><strong>Only 22%</strong> consulted the public on healthcare AI decisions</span>
-    <span class="who-sep">|</span>
-    <span class="who-stat"><strong>64%</strong> have AI-assisted diagnostics deployed</span>
-  </div>
 </div>
 </div>
 
@@ -432,22 +392,10 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
     <div class="abanner-txt"><strong>Mandatory equity audit &mdash; AI risk stratification in mental health.</strong> All trusts must complete an equity audit by 30 Jun 2026. <button type="button" class="alb" onclick="T('al')">View full alert &rarr;</button></div>
   </div>
 
-  <!-- WHO context card — new in v0.9 -->
-  <div class="who-card">
-    <div class="who-card-hd">WHO European Region AI in Health &mdash; key findings (Adib et al., Int J Med Inform, Jun 2026)</div>
-    <div class="who-grid">
-      <div class="who-item"><div class="who-num">94%</div><div class="who-lbl">survey response rate across 50 Member States</div></div>
-      <div class="who-item"><div class="who-num">48%</div><div class="who-lbl">cite legal uncertainty as the top barrier to AI adoption</div></div>
-      <div class="who-item"><div class="who-num">24%</div><div class="who-lbl">offer in-service AI training for health professionals</div></div>
-      <div class="who-item"><div class="who-num">22%</div><div class="who-lbl">consulted the public on healthcare AI decisions</div></div>
-    </div>
-    <div class="who-src">This registry directly addresses three of the four barriers above &mdash; legal safe harbour for reporting, public and patient submission pathways, and learning infrastructure for clinical safety professionals.</div>
-  </div>
-
+  
   <div class="qr">
     <div class="qr-top">
-      <span class="qr-ps">$</span><span class="qr-cmd">registry.submit --minimal</span>
-      <span class="qr-crs"></span>
+      <span class="qr-cmd">Quick report &middot; in 10 seconds</span><span class="qr-crs" aria-hidden="true"></span>
       <span class="qr-hint">designed for the end of a busy surgery</span>
     </div>
     <div class="qr-btns">
@@ -474,7 +422,7 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
   <div class="fr">
     <input id="si" type="search" placeholder="Search title or tags&hellip;" oninput="FI()">
     <select id="sv2" onchange="FI()"><option value="">All severities</option><option>Death</option><option>Severe harm</option><option>Moderate harm</option><option>Low harm</option><option>Near miss</option><option>No harm</option></select>
-    <select id="st3" onchange="FI()"><option value="">All AI types</option><option>Clinical decision support</option><option>NLP / ambient scribe</option><option>Risk stratification</option><option>Diagnostic imaging AI</option><option>Mental health / wellbeing app</option><option>Virtual ward / remote monitoring</option><option>Prescribing / EPMA</option></select>
+    <select id="st3" onchange="FI()"><option value="">All AI types</option><option>Clinical decision support</option><option value="NLP / ambient scribe">Ambient scribe (natural language processing tool)</option><option>Risk stratification</option><option>Diagnostic imaging AI</option><option value="Mental health / wellbeing app">Mental health and wellbeing app</option><option value="Virtual ward / remote monitoring">Virtual ward and remote monitoring</option><option value="Prescribing / EPMA">Prescribing (Electronic Prescribing - EPMA)</option></select>
     <select id="sdom" onchange="FI()"><option value="">All MIT domains</option><option value="1">1. Discrimination</option><option value="3">3. Misinformation</option><option value="5">5. Human-Computer Interaction</option><option value="6">6. Socioeconomic</option><option value="7">7. AI System Safety</option></select>
   </div>
   <div class="rcnt" id="bco">12 incidents</div>
@@ -483,14 +431,14 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
 
 <!-- PRODUCTS -->
 <div id="pp" class="page"><div class="pi">
-  <div style="margin-bottom:20px"><div class="ey">Product directory</div><h2 class="hdl">AI products with <em>linked incident reports</em></h2><p class="lede">MHRA registration status cross-referenced. Use before procurement or when authoring clinical safety cases under DCB0129.</p></div>
+  <div style="margin-bottom:20px"><div class="ey">Product directory</div><h2 class="hdl">AI products with <em>linked incident reports</em></h2><p class="lede">Medicines and Healthcare products Regulatory Agency (MHRA) registration status cross-referenced. Use before procurement or when authoring clinical safety cases under DCB0129 (the NHS clinical risk management standard for digital health vendors).</p></div>
   <div class="fr">
     <input id="pi2" type="search" placeholder="Search product or manufacturer&hellip;" oninput="FP()">
-    <select id="pt2" onchange="FP()"><option value="">All types</option><option>Clinical decision support</option><option>NLP / ambient scribe</option><option>Risk stratification</option><option>Diagnostic imaging AI</option><option>Mental health / wellbeing app</option><option>Virtual ward / remote monitoring</option><option>Prescribing / EPMA</option></select>
+    <select id="pt2" onchange="FP()"><option value="">All types</option><option>Clinical decision support</option><option value="NLP / ambient scribe">Ambient scribe (natural language processing tool)</option><option>Risk stratification</option><option>Diagnostic imaging AI</option><option value="Mental health / wellbeing app">Mental health and wellbeing app</option><option value="Virtual ward / remote monitoring">Virtual ward and remote monitoring</option><option value="Prescribing / EPMA">Prescribing (Electronic Prescribing - EPMA)</option></select>
   </div>
   <div class="rcnt" id="pco">10 products</div>
   <div id="pl" class="stag"></div>
-  <div class="mit" style="margin-top:14px"><div class="mitl">MHRA registration note</div><div class="mitb">Status cross-referenced at last update. Inspired by HSJ finding that only 3 of 23 registered AVT vendors were searchable on MHRA prior to May 2026.</div></div>
+  <div class="mit" style="margin-top:14px"><div class="mitl">MHRA registration note</div><div class="mitb">Status cross-referenced at last update. Inspired by HSJ (Health Service Journal) finding that only 3 of 23 registered AVT (ambient voice technology) vendors were searchable on the MHRA prior to May 2026.</div></div>
 </div></div>
 
 <!-- SAFETY ALERTS -->
@@ -508,37 +456,7 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
     <div class="card"><div class="ctl">Care setting</div><div class="cth">Where reports originate</div><div class="hbr" id="ch-set"></div></div>
   </div>
 
-  <!-- WHO European Region benchmark — new in v0.9 -->
-  <div class="who-bench">
-    <div class="who-bench-hd">UK vs WHO European Region &mdash; selected indicators (Adib et al., Int J Med Inform, Jun 2026)</div>
-    <div class="bench-legend">
-      <div class="bench-leg-item"><div class="bench-leg-dot" style="background:var(--orange);opacity:.8"></div>UK (this registry)</div>
-      <div class="bench-leg-item"><div class="bench-leg-dot" style="background:var(--blue);opacity:.7"></div>WHO European Region avg</div>
-    </div>
-    <div class="bench-rows">
-      <div class="bench-row">
-        <div class="bench-label">AI-assisted diagnostics deployed</div>
-        <div class="bench-bar-wrap"><div class="bench-bar-lbl"><span>UK</span><span>est. 80%+</span></div><div class="bench-bg"><div class="bench-fill-uk" style="width:80%"></div></div></div>
-        <div class="bench-bar-wrap"><div class="bench-bar-lbl"><span>WHO Europe</span><span>64%</span></div><div class="bench-bg"><div class="bench-fill-who" style="width:64%"></div></div></div>
-      </div>
-      <div class="bench-row">
-        <div class="bench-label">In-service AI training for health staff</div>
-        <div class="bench-bar-wrap"><div class="bench-bar-lbl"><span>UK</span><span>est. 30%</span></div><div class="bench-bg"><div class="bench-fill-uk" style="width:30%"></div></div></div>
-        <div class="bench-bar-wrap"><div class="bench-bar-lbl"><span>WHO Europe</span><span>24%</span></div><div class="bench-bg"><div class="bench-fill-who" style="width:24%"></div></div></div>
-      </div>
-      <div class="bench-row">
-        <div class="bench-label">Public consulted on AI decisions</div>
-        <div class="bench-bar-wrap"><div class="bench-bar-lbl"><span>UK</span><span>est. 25%</span></div><div class="bench-bg"><div class="bench-fill-uk" style="width:25%"></div></div></div>
-        <div class="bench-bar-wrap"><div class="bench-bar-lbl"><span>WHO Europe</span><span>22%</span></div><div class="bench-bg"><div class="bench-fill-who" style="width:22%"></div></div></div>
-      </div>
-      <div class="bench-row">
-        <div class="bench-label">Consultation insights made public</div>
-        <div class="bench-bar-wrap"><div class="bench-bar-lbl"><span>UK</span><span>this registry</span></div><div class="bench-bg"><div class="bench-fill-uk" style="width:100%"></div></div></div>
-        <div class="bench-bar-wrap"><div class="bench-bar-lbl"><span>WHO Europe</span><span>28%</span></div><div class="bench-bg"><div class="bench-fill-who" style="width:28%"></div></div></div>
-      </div>
-    </div>
-  </div>
-
+  
   <div class="card" style="margin-bottom:18px">
     <div class="ctl">MIT AI Risk Repository taxonomy</div>
     <div class="cth">Incident classification by domain</div>
@@ -551,7 +469,7 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
     <div class="card"><div class="ctl">Quarterly volume</div><div class="cth">Trajectory of reporting</div><div class="bw" id="ch-q"><div class="bax"></div></div></div>
   </div>
 
-  <div style="margin-bottom:4px"><div class="ey">Underreporting signal</div><h2 class="hdl">Where the silence is loudest</h2><p class="lede" style="margin-bottom:16px">Five Yellow Card reports across 15M+ ambient voice tool consultations is a measurement failure, not a safety record. The WHO report confirms this is a pan-European problem: only 22% of Member States consulted the public on AI decisions.</p></div>
+  <div style="margin-bottom:4px"><div class="ey">Underreporting signal</div><h2 class="hdl">Where the silence is loudest</h2><p class="lede" style="margin-bottom:16px">Five Yellow Card reports across 15M+ ambient voice tool consultations is a measurement failure, not a safety record.</p></div>
   <div id="url" class="stag"></div>
 
   <div class="g3" style="margin-top:18px">
@@ -563,7 +481,7 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
 
 <!-- TRUST LEADS -->
 <div id="pt" class="page"><div class="pi">
-  <div style="margin-bottom:20px"><div class="ey">Trust AI safety lead directory</div><h2 class="hdl">Named accountability, <em>publicly visible</em></h2><p class="lede">WHO data shows only 24% of European Member States offer any AI training for health staff. A named trust AI safety lead is the minimum unit of governance that makes learning from this registry possible.</p></div>
+  <div style="margin-bottom:20px"><div class="ey">Trust AI safety lead directory</div><h2 class="hdl">Named accountability, <em>publicly visible</em></h2><p class="lede">A named trust AI safety lead is the minimum unit of governance that makes learning from this registry possible.</p></div>
   <div class="fr">
     <input id="ti2" type="search" placeholder="Search trust&hellip;" oninput="FT()">
     <select id="tl2" onchange="FT()"><option value="">All statuses</option><option value="yes">Named lead confirmed</option><option value="part">In progress</option><option value="no">No named lead</option></select>
@@ -576,7 +494,7 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
 <div id="ps" class="page"><div class="pi">
   <div id="sf">
     <div class="fw">
-      <div style="margin-bottom:20px"><div class="ey">Submit a report</div><h2 class="hdl">Minimum friction, <em>maximum signal</em></h2><p class="lede">Two fields required. Full details optional. Designed for the clinician who finishes surgery and notices something off &mdash; the WHO European report found the broader public is consulted by only 22% of Member States. This registry accepts reports from patients too.</p></div>
+      <div style="margin-bottom:20px"><div class="ey">Submit a report</div><h2 class="hdl">Minimum friction, <em>maximum signal</em></h2><p class="lede">Two fields required. Full details optional. Designed for the clinician who finishes surgery and notices something off. This registry accepts reports from patients too.</p></div>
       <div class="infob">Prototype only &mdash; in a live service, submissions would be encrypted and reviewed by the clinical safety panel before publication.</div>
       <div class="mrep">
         <div class="mrey">Minimal report</div>
@@ -589,8 +507,8 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
         <summary style="font-family:var(--mono);font-size:10px;color:var(--orange2);cursor:pointer;padding:9px 0;text-transform:uppercase;letter-spacing:.1em;list-style:none">+ Add full details (optional but valuable)</summary>
         <div style="padding-top:11px">
           <div class="fg"><label for="fm">Manufacturer / developer</label><input id="fm" type="text"></div>
-          <div class="fg"><label for="ftp">AI system type</label><select id="ftp"><option>Select&hellip;</option><option>Clinical decision support</option><option>Diagnostic imaging AI</option><option>NLP / ambient scribe</option><option>Risk stratification</option><option>Mental health / wellbeing app</option><option>Virtual ward / remote monitoring</option><option>Prescribing / EPMA</option><option>Triage AI</option><option>Other</option></select></div>
-          <div class="fg"><label for="fse">Care setting</label><select id="fse"><option>Select&hellip;</option><option>Primary care</option><option>Secondary care — acute</option><option>Community mental health</option><option>Emergency department</option><option>Screening programme</option><option>Other</option></select></div>
+          <div class="fg"><label for="ftp">AI system type</label><select id="ftp"><option>Select&hellip;</option><option>Clinical decision support</option><option>Diagnostic imaging AI</option><option value="NLP / ambient scribe">Ambient scribe (natural language processing tool)</option><option>Risk stratification</option><option value="Mental health / wellbeing app">Mental health and wellbeing app</option><option value="Virtual ward / remote monitoring">Virtual ward and remote monitoring</option><option value="Prescribing / EPMA">Prescribing (Electronic Prescribing - EPMA)</option><option>Triage AI</option><option>Other</option></select></div>
+          <div class="fg"><label for="fse">Care setting</label><select id="fse"><option>Select&hellip;</option><option>Primary care</option><option>Secondary care — acute</option><option>Community mental health</option><option>Accident &amp; Emergency (A&amp;E)</option><option>Screening programme</option><option>Other</option></select></div>
           <div class="fg"><label for="fd">Incident description</label><textarea id="fd" placeholder="What happened? No patient or staff names."></textarea></div>
           <div class="fg"><label for="ff">Contributing factors</label><textarea id="ff" style="min-height:52px" placeholder="e.g. data quality, workflow design, training gaps, inadequate oversight"></textarea></div>
           <div class="fg"><label for="fl">Key learning</label><textarea id="fl" style="min-height:52px" placeholder="What should other trusts know?"></textarea></div>
@@ -605,7 +523,7 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
     <div class="cico">&#10003;</div>
     <h2 class="ctit">Report submitted</h2>
     <p class="cref">Reference: <span id="rn"></span></p>
-    <p class="cbod">Reviewed by the clinical safety panel within 30 working days. You will be updated when it is published — closing the loop on what happened next.</p>
+    <p class="cbod">Reviewed by the clinical safety panel within 5 working days. You will be updated when it is published — closing the loop on what happened next.</p>
     <button type="button" class="btn" onclick="RST()">Submit another report</button>
   </div>
 </div></div>
@@ -614,31 +532,30 @@ footer p{font-family:var(--mono);font-size:10px;color:rgba(245,239,228,.3);lette
 <div id="pg" class="page"><div class="pi">
   <div style="margin-bottom:20px"><div class="ey">Governance &amp; methodology</div><h2 class="hdl">Theoretical foundation &amp; <em>operating principles</em></h2><p class="lede">This registry complements &mdash; does not replace &mdash; LFPSE, MHRA Yellow Card, and trust-level incident reporting. Classification grounded in the MIT AI Risk Repository.</p></div>
   <div class="mit"><div class="mitl">Theoretical foundation</div><div class="mitt">MIT AI Risk Repository</div><div class="mitb" style="margin-bottom:8px">A living database of 1,700+ AI risks with a Causal Taxonomy (Entity &middot; Intent &middot; Timing) and Domain Taxonomy (7 domains, 24 subdomains). Every incident in this registry is classified against both, giving NHS clinical safety officers a peer-reviewed shared vocabulary for DCB0129 hazard analysis.</div><a href="https://airisk.mit.edu" target="_blank" class="mita" rel="noopener">&rarr; airisk.mit.edu</a></div>
-  <div class="mit" style="border-left-color:var(--blue);background:var(--bluet)"><div class="mitl" style="color:var(--blue)">Supporting evidence</div><div class="mitt">WHO European Region AI in Health Study, 2026</div><div class="mitb" style="margin-bottom:8px">A cross-sectional survey of 50 Member States (94% response rate) published in the International Journal of Medical Informatics (Adib et al., 2026) confirms that legal uncertainty (48%), financial affordability (46%), and inadequate patient engagement are the top barriers to AI adoption in European health systems. This registry directly addresses all three: safe harbour reporting, open public access, and zero-cost submission.</div><a href="https://doi.org/10.1016/j.ijmedinf.2026.106532" target="_blank" class="mita" rel="noopener" style="color:var(--blue)">&rarr; doi.org/10.1016/j.ijmedinf.2026.106532</a></div>
-  <div id="gl" class="stag"></div>
-  <div class="gfoot">Concept design: May&ndash;Jun 2026. Improved following: HSJ news report by Ben Clover on AVT incident underreporting &middot; Dr Yash Morje comment on my orgincal post suggesting a registry on "distributed failure pathways" &middot; Paul Brady's comments on FMEA for AI &middot; HSSIB report on ePMA incidents and recommnendation ref: O/2026/087. Informed by: DCB0129/0160 &middot; LFPSE &middot; MHRA Yellow Card &middot; NHS AIS DAPB1605 &middot; AHRQ AI Safety Program &middot; UNESCO AI Ethics Recommendation (2021) &middot; EU AI Act Annex III &middot; UK National Commission on AI in Healthcare (2025&ndash;26) &middot; MIT AI Risk Repository &middot; WHO European Region AI in Health Study (Adib et al., Int J Med Inform, 2026).</div>
+    <div id="gl" class="stag"></div>
+  <div class="gfoot">Concept design: May&ndash;Jun 2026. Improved following: Luke Kellaway (Health Service Journal) on ambient voice technology (AVT) underreporting &middot; Yash Morje on distributed failure pathways &middot; Paul Brady on Failure Mode and Effects Analysis (FMEA) for AI &middot; Oana on Health Services Safety Investigations Body (HSSIB) observation O/2026/087 on Electronic Prescribing and Medicines Administration (EPMA). Informed by: NHS Digital clinical risk standards DCB0129 (vendor) and DCB0160 (deploying organisation) &middot; LFPSE (Learn From Patient Safety Events) &middot; the MHRA Yellow Card scheme &middot; the NHS Accessible Information Standard (DAPB1605) &middot; the AHRQ (US Agency for Healthcare Research and Quality) AI Safety Program &middot; UNESCO AI Ethics Recommendation (2021) &middot; EU AI Act Annex III (referenced as international context only; the UK is not bound by it) &middot; UK National Commission on the Regulation of AI in Healthcare (2025&ndash;26) &middot; the MIT AI Risk Repository.</div>
 </div></div>
 
 </main>
 
-<footer><p>UK Healthcare AI Safety Registry &middot; Concept prototype v0.9 &middot; Not a live service &middot; Jun 2026 &middot; Designed by Sarah Amani | RMN | CSO | Former NHS CNIO </p></footer>
+<footer><p>UK Healthcare AI Safety Registry &middot; Concept prototype v0.9 &middot; Not a live service &middot; Jun 2026 &middot; Designed by Sarah Amani | RMN | Founder, TrustPoint Digital Health Ltd &middot; <a href="https://www.trustpointdigitalhealth.com" target="_blank" rel="noopener">www.trustpointdigitalhealth.com</a></p></footer>
 </div>
 
 <script>
-var INC=[{"id": "UKHAI-2025-0055", "dt": "19 Feb 2025", "sv": "Moderate harm", "sc": "bd-m", "tp": "Clinical decision support", "se": "Emergency department", "rg": "Yorkshire (anon)", "ti": "ED triage AI assigned low acuity to atypical MI \u2014 4-hour delay in troponin testing", "su": "AI assigned Priority 4 to a 67-year-old with jaw pain, nausea and fatigue. Training overweighted classic chest pain. Troponin delayed 4 hours; NSTEMI diagnosed.", "fc": ["Training overweighted typical cardiac presentations", "No low-confidence flag for clinical override", "Atypical presentations underrepresented in training set"], "lrn": "AI triage must perform equitably across atypical presentations. Low-confidence outputs must surface to the clinician rather than producing a single silent score.", "tg": ["Triage", "Diagnostic delay"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "1", "dname": "1.3 Unequal performance across groups", "out": null}, {"id": "UKHAI-2025-0089", "dt": "14 Mar 2025", "sv": "Near miss", "sc": "bd-n", "tp": "Clinical decision support", "se": "Secondary care \u2014 acute", "rg": "North of England (anon)", "ti": "Sepsis prediction algorithm silent on deteriorating patient due to incomplete EHR data ingestion", "su": "Key physiological parameters not ingested within the expected window. No alert generated. Ward nurse identified deterioration on NEWS2 before harm occurred.", "fc": ["Incomplete EHR data pipeline", "No system alert for missing data inputs", "Single-source reliance on AI output without completeness check"], "lrn": "Data completeness checks must surface before AI output is displayed. Systems must communicate uncertainty, not silence it.", "tg": ["EHR integration", "Alert design"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "7", "dname": "7 AI System Safety, Failures and Limitations", "out": "Manufacturer issued product update v2.3.1 adding data ingestion failure alerts. Trust confirmed deployment. ALERT-2025-004 closed."}, {"id": "UKHAI-2025-0112", "dt": "22 Apr 2025", "sv": "Low harm", "sc": "bd-l", "tp": "Prescribing / EPMA", "se": "Secondary care \u2014 acute", "rg": "East Midlands (anon)", "ti": "AI drug interaction checker missed interaction absent from outdated knowledge base \u2014 minor bleeding", "su": "Post-marketing interaction data published 6 weeks prior had not been loaded. Interaction missed. Minor bleeding before specialist pharmacist identified issue.", "fc": ["Knowledge base update cycle too slow", "No alert when currency fell below threshold", "AI checker displaced traditional pharmacist review"], "lrn": "AI drug interaction systems must have defined maximum update intervals linked to regulatory publication timelines.", "tg": ["Medication safety", "EPMA"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "3", "dname": "3.1 False or misleading information", "out": null}, {"id": "UKHAI-2025-0134", "dt": "02 Jun 2025", "sv": "Low harm", "sc": "bd-l", "tp": "NLP / ambient scribe", "se": "Primary care", "rg": "Midlands (anon)", "ti": "Ambient scribe misattributed resolved allergy status \u2014 incorrect prescribing record", "su": "Temporal context error conflated allergy history across consultations. Penicillin allergy documented as resolved. Prescription issued without contraindication flagging; caught at dispensing pharmacy.", "fc": ["Temporal context errors in NLP output", "No mandatory clinician verification of AI-generated allergy fields", "Pharmacy safety netting effective"], "lrn": "AI-generated allergy and medication fields require mandatory clinician verification before record commit.", "tg": ["Medication safety", "NLP error"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "3", "dname": "3.1 False or misleading information", "out": "Led to ALERT-2026-001. ScribeAI NHS Edition issued mandatory update adding active allergy verification. Deployed across 14 trusts."}, {"id": "UKHAI-2025-0178", "dt": "09 Jul 2025", "sv": "Near miss", "sc": "bd-n", "tp": "Clinical decision support", "se": "Primary care", "rg": "South East England (anon)", "ti": "GP triage AI classified acute appendicitis as gastroenteritis \u2014 safety-netted by out-of-hours GP", "su": "Right iliac fossa pain, nausea and low-grade fever assessed as viral gastroenteritis. OOH GP recognised appendicitis same evening. Laparoscopic appendicectomy next day.", "fc": ["Probability threshold too conservative for urgent referral", "Model trained predominantly on self-limiting presentations", "No escalation for NICE appendicitis symptom combinations"], "lrn": "GP triage AI must incorporate NICE symptom combination rules. Conservative thresholds for surgical emergencies increase missed diagnosis risk.", "tg": ["GP triage", "Appendicitis"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "7", "dname": "7 AI System Safety, Failures and Limitations", "out": null}, {"id": "UKHAI-2025-0201", "dt": "18 Aug 2025", "sv": "Moderate harm", "sc": "bd-m", "tp": "Risk stratification", "se": "Community mental health", "rg": "London (anon)", "ti": "Risk stratification model: 34% disparity in crisis referral rates across ethnic groups", "su": "Retrospective audit found lower scores for Black and South Asian patients with equivalent presentations. Model live 14 months before clinical governance review triggered audit.", "fc": ["Training data not representative of local population", "Pre-deployment EIA insufficient", "No post-deployment equity monitoring by demographic group"], "lrn": "Risk stratification tools must undergo mandatory post-deployment equity auditing at 3, 6 and 12 months.", "tg": ["Algorithmic bias", "Health inequalities"], "entity": "AI", "intent": "Unintentional", "timing": "Pre and Post-deployment", "domain": "1", "dname": "1.1 Unfair discrimination and misrepresentation", "out": "Led to ALERT-2026-003 (active). NHS England commissioned independent equity review across 11 mental health trusts."}, {"id": "UKHAI-2025-0233", "dt": "01 Sep 2025", "sv": "Severe harm", "sc": "bd-s", "tp": "Diagnostic imaging AI", "se": "Screening programme", "rg": "North West England (anon)", "ti": "Retinopathy AI graded borderline-quality image without enforcing repeat \u2014 vision loss", "su": "System allowed AI grading of a borderline image despite protocol requiring repeat. No retinopathy issued. Proliferative retinopathy found 12 months later; vision loss in one eye.", "fc": ["System allowed grading of borderline images", "Quality flag in metadata only, not clinical worklist", "Repeat protocol paper-based and not integrated"], "lrn": "AI diagnostic systems must enforce mandatory pre-conditions as system constraints, not advisory flags.", "tg": ["Retinopathy", "Image quality"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "7", "dname": "7 AI System Safety, Failures and Limitations", "out": null}, {"id": "UKHAI-2025-0267", "dt": "29 Oct 2025", "sv": "Severe harm", "sc": "bd-s", "tp": "Diagnostic imaging AI", "se": "Screening programme", "rg": "South West England (anon)", "ti": "AI-assisted mammography false negative on malignant lesion \u2014 11-month diagnostic delay", "su": "AI and reviewing radiologist both assessed a borderline case as normal. Malignant lesion found at next cycle 11 months later; retrospective review confirmed lesion was visible at original imaging.", "fc": ["AI-radiologist concurrence threshold too conservative", "No mandatory second-reader for AI-concurred borderline cases", "AI confidence score not captured in audit trail"], "lrn": "Second-reader review must not be removed on efficiency grounds for high-consequence borderline findings. AI confidence scores must be in the audit trail.", "tg": ["Diagnostic error", "Cancer screening"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "5", "dname": "5 Human-Computer Interaction (automation bias)", "out": "Led to ALERT-2025-006. Mandatory second-reader implemented across 7 screening programmes. MHRA opened formal post-market review."}, {"id": "UKHAI-2025-0299", "dt": "11 Nov 2025", "sv": "Low harm", "sc": "bd-l", "tp": "NLP / ambient scribe", "se": "Secondary care \u2014 acute", "rg": "Wales (anon)", "ti": "AI discharge summary omitted contrast allergy and cardiology follow-up \u2014 not identified at countersignature", "su": "Newly identified contrast allergy and cardiology follow-up absent from AI summary. Countersigning clinician did not identify omissions. Allergy unknown at subsequent CT at a different trust.", "fc": ["Sign-off lacked active verification of allergy and follow-up fields", "No mandatory fields for critical safety information", "No cross-check against clinical record at generation"], "lrn": "AI discharge summaries must require active clinician confirmation of allergy status and follow-up arrangements. These must be mandatory fields.", "tg": ["Discharge safety", "Allergy"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "3", "dname": "3.1 False or misleading information", "out": "Led to ALERT-2026-001. Same manufacturer as UKHAI-2025-0134; pattern identified across both incidents."}, {"id": "UKHAI-2026-0012", "dt": "07 Jan 2026", "sv": "Near miss", "sc": "bd-n", "tp": "Mental health / wellbeing app", "se": "Community mental health", "rg": "Wales (anon)", "ti": "Conversational AI failed to escalate suicidal ideation disclosed in colloquial phrasing", "su": "App failed to trigger crisis pathway when user disclosed suicidal ideation using indirect language. Standard CBT module continued. User independently contacted crisis team 90 minutes later.", "fc": ["Intent recognition trained on formal clinical language only", "Escalation relied on keyword matching rather than semantic understanding", "No human escalation fallback within the 30-minute session window"], "lrn": "Mental health AI must use semantic intent recognition for crisis detection. Human escalation fallback must be available within defined windows.", "tg": ["Mental health", "Crisis escalation"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "7", "dname": "7 AI System Safety, Failures and Limitations", "out": null}, {"id": "UKHAI-2026-0031", "dt": "14 Feb 2026", "sv": "Moderate harm", "sc": "bd-m", "tp": "Clinical decision support", "se": "Secondary care \u2014 elective", "rg": "London (anon)", "ti": "AI prior authorisation denied knee replacement on incomplete data \u2014 9-week delay before override", "su": "Tool denied total knee replacement based on structured data only, missing 18 months of physiotherapy records and Oxford Knee Score 11/48 held in free text. Denial stood 9 weeks until consultant escalation.", "fc": ["AI accessed structured data only; free text not processed", "No automatic escalation when Oxford Knee Score fell below threshold", "Override accessible to specialist consultant only"], "lrn": "AI prior authorisation tools relying on structured data alone are insufficient for complex elective decisions. Override pathways must be accessible to GPs and patients.", "tg": ["Prior authorisation", "Elective care"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "6", "dname": "6 Socioeconomic and Environmental", "out": null}, {"id": "UKHAI-2026-0044", "dt": "03 Mar 2026", "sv": "No harm", "sc": "bd-z", "tp": "Virtual ward / remote monitoring", "se": "Secondary care \u2014 community", "rg": "East of England (anon)", "ti": "Predictive deterioration model: 23 false-positive alerts in 48 hours drove alert fatigue and reduced review frequency", "su": "No genuine deterioration across 23 alerts. Team reduced review frequency. No harm. Model had not been recalibrated following a recent medication change.", "fc": ["No clinician-accessible mechanism to adjust alert thresholds", "Medication change not reflected in model baseline", "No automated suppression of repeated identical alerts"], "lrn": "Virtual ward AI must support clinician-accessible threshold adjustment with audit trail. Medication changes must trigger automatic recalibration review.", "tg": ["Alert fatigue", "Calibration"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "5", "dname": "5 Human-Computer Interaction (alert fatigue)", "out": null}];
+var INC=[{"id": "UKHAI-2025-0055", "dt": "19 Feb 2025", "sv": "Moderate harm", "sc": "bd-m", "tp": "Clinical decision support", "se": "Emergency department", "rg": "Yorkshire (anon)", "ti": "A&E triage AI assigned low acuity to atypical heart attack (MI) \u2014 4-hour delay in troponin testing", "su": "AI assigned Priority 4 to a 67-year-old with jaw pain, nausea and fatigue. Training overweighted classic chest pain. Troponin delayed 4 hours; NSTEMI (a type of heart attack) diagnosed.", "fc": ["Training overweighted typical cardiac presentations", "No low-confidence flag for clinical override", "Atypical presentations underrepresented in training set"], "lrn": "AI triage must perform equitably across atypical presentations. Low-confidence outputs must surface to the clinician rather than producing a single silent score.", "tg": ["Triage", "Diagnostic delay"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "1", "dname": "1.3 Unequal performance across groups", "out": null}, {"id": "UKHAI-2025-0089", "dt": "14 Mar 2025", "sv": "Near miss", "sc": "bd-n", "tp": "Clinical decision support", "se": "Secondary care \u2014 acute", "rg": "North of England (anon)", "ti": "Sepsis prediction algorithm silent on deteriorating patient due to incomplete Electronic Health Record (EHR) data ingestion", "su": "Key physiological parameters not ingested within the expected window. No alert generated. Ward nurse identified deterioration on the National Early Warning Score (NEWS2) before harm occurred.", "fc": ["Incomplete EHR data pipeline", "No system alert for missing data inputs", "Single-source reliance on AI output without completeness check"], "lrn": "Data completeness checks must surface before AI output is displayed. Systems must communicate uncertainty, not silence it.", "tg": ["EHR integration", "Alert design"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "7", "dname": "7 AI System Safety, Failures and Limitations", "out": "Manufacturer issued product update v2.3.1 adding data ingestion failure alerts. Trust confirmed deployment. ALERT-2025-004 closed."}, {"id": "UKHAI-2025-0112", "dt": "22 Apr 2025", "sv": "Low harm", "sc": "bd-l", "tp": "Prescribing / EPMA", "se": "Secondary care \u2014 acute", "rg": "East Midlands (anon)", "ti": "AI drug interaction checker missed interaction absent from outdated knowledge base \u2014 minor bleeding", "su": "Post-marketing interaction data published 6 weeks prior had not been loaded. Interaction missed. Minor bleeding before specialist pharmacist identified issue.", "fc": ["Knowledge base update cycle too slow", "No alert when currency fell below threshold", "AI checker displaced traditional pharmacist review"], "lrn": "AI drug interaction systems must have defined maximum update intervals linked to regulatory publication timelines.", "tg": ["Medication safety", "EPMA"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "3", "dname": "3.1 False or misleading information", "out": null}, {"id": "UKHAI-2025-0134", "dt": "02 Jun 2025", "sv": "Low harm", "sc": "bd-l", "tp": "NLP / ambient scribe", "se": "Primary care", "rg": "Midlands (anon)", "ti": "Ambient scribe misattributed resolved allergy status \u2014 incorrect prescribing record", "su": "Temporal context error conflated allergy history across consultations. Penicillin allergy documented as resolved. Prescription issued without contraindication flagging; caught at dispensing pharmacy.", "fc": ["Temporal context errors in NLP output", "No mandatory clinician verification of AI-generated allergy fields", "Pharmacy safety netting effective"], "lrn": "AI-generated allergy and medication fields require mandatory clinician verification before record commit.", "tg": ["Medication safety", "NLP error"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "3", "dname": "3.1 False or misleading information", "out": "Led to ALERT-2026-001. ScribeAI NHS Edition issued mandatory update adding active allergy verification. Deployed across 14 trusts."}, {"id": "UKHAI-2025-0178", "dt": "09 Jul 2025", "sv": "Near miss", "sc": "bd-n", "tp": "Clinical decision support", "se": "Primary care", "rg": "South East England (anon)", "ti": "GP triage AI classified acute appendicitis as gastroenteritis \u2014 safety-netted by out-of-hours General Practitioner (GP)", "su": "Right iliac fossa pain, nausea and low-grade fever assessed as viral gastroenteritis. The out-of-hours GP recognised appendicitis same evening. Laparoscopic appendicectomy next day.", "fc": ["Probability threshold too conservative for urgent referral", "Model trained predominantly on self-limiting presentations", "No escalation for NICE appendicitis symptom combinations"], "lrn": "GP triage AI must incorporate NICE symptom combination rules. Conservative thresholds for surgical emergencies increase missed diagnosis risk.", "tg": ["GP triage", "Appendicitis"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "7", "dname": "7 AI System Safety, Failures and Limitations", "out": null}, {"id": "UKHAI-2025-0201", "dt": "18 Aug 2025", "sv": "Moderate harm", "sc": "bd-m", "tp": "Risk stratification", "se": "Community mental health", "rg": "London (anon)", "ti": "Risk stratification model: 34% disparity in crisis referral rates across ethnic groups", "su": "Retrospective audit found lower scores for Black and South Asian patients with equivalent presentations. Model live 14 months before clinical governance review triggered audit.", "fc": ["Training data not representative of local population", "Pre-deployment Equality Impact Assessment (EIA) insufficient", "No post-deployment equity monitoring by demographic group"], "lrn": "Risk stratification tools must undergo mandatory post-deployment equity auditing at 3, 6 and 12 months.", "tg": ["Algorithmic bias", "Health inequalities"], "entity": "AI", "intent": "Unintentional", "timing": "Pre and Post-deployment", "domain": "1", "dname": "1.1 Unfair discrimination and misrepresentation", "out": "Led to ALERT-2026-003 (active). NHS England commissioned independent equity review across 11 mental health trusts."}, {"id": "UKHAI-2025-0233", "dt": "01 Sep 2025", "sv": "Severe harm", "sc": "bd-s", "tp": "Diagnostic imaging AI", "se": "Screening programme", "rg": "North West England (anon)", "ti": "Retinopathy AI graded borderline-quality image without enforcing repeat \u2014 vision loss", "su": "System allowed AI grading of a borderline image despite protocol requiring repeat. No retinopathy issued. Proliferative retinopathy found 12 months later; vision loss in one eye.", "fc": ["System allowed grading of borderline images", "Quality flag in metadata only, not clinical worklist", "Repeat protocol paper-based and not integrated"], "lrn": "AI diagnostic systems must enforce mandatory pre-conditions as system constraints, not advisory flags.", "tg": ["Retinopathy", "Image quality"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "7", "dname": "7 AI System Safety, Failures and Limitations", "out": null}, {"id": "UKHAI-2025-0267", "dt": "29 Oct 2025", "sv": "Severe harm", "sc": "bd-s", "tp": "Diagnostic imaging AI", "se": "Screening programme", "rg": "South West England (anon)", "ti": "AI-assisted mammography false negative on malignant lesion \u2014 11-month diagnostic delay", "su": "AI and reviewing radiologist both assessed a borderline case as normal. Malignant lesion found at next cycle 11 months later; retrospective review confirmed lesion was visible at original imaging.", "fc": ["AI-radiologist concurrence threshold too conservative", "No mandatory second-reader for AI-concurred borderline cases", "AI confidence score not captured in audit trail"], "lrn": "Second-reader review must not be removed on efficiency grounds for high-consequence borderline findings. AI confidence scores must be in the audit trail.", "tg": ["Diagnostic error", "Cancer screening"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "5", "dname": "5 Human-Computer Interaction (automation bias)", "out": "Led to ALERT-2025-006. Mandatory second-reader implemented across 7 screening programmes. MHRA opened formal post-market review."}, {"id": "UKHAI-2025-0299", "dt": "11 Nov 2025", "sv": "Low harm", "sc": "bd-l", "tp": "NLP / ambient scribe", "se": "Secondary care \u2014 acute", "rg": "Wales (anon)", "ti": "AI discharge summary omitted contrast allergy and cardiology follow-up \u2014 not identified at countersignature", "su": "Newly identified contrast allergy and cardiology follow-up absent from AI summary. Countersigning clinician did not identify omissions. Allergy unknown at a subsequent CT (computed tomography) scan at a different trust.", "fc": ["Sign-off lacked active verification of allergy and follow-up fields", "No mandatory fields for critical safety information", "No cross-check against clinical record at generation"], "lrn": "AI discharge summaries must require active clinician confirmation of allergy status and follow-up arrangements. These must be mandatory fields.", "tg": ["Discharge safety", "Allergy"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "3", "dname": "3.1 False or misleading information", "out": "Led to ALERT-2026-001. Same manufacturer as UKHAI-2025-0134; pattern identified across both incidents."}, {"id": "UKHAI-2026-0012", "dt": "07 Jan 2026", "sv": "Near miss", "sc": "bd-n", "tp": "Mental health / wellbeing app", "se": "Community mental health", "rg": "Wales (anon)", "ti": "Conversational AI failed to escalate suicidal ideation disclosed in colloquial phrasing", "su": "App failed to trigger crisis pathway when user disclosed suicidal ideation using indirect language. Standard CBT (cognitive behavioural therapy) module continued. User independently contacted crisis team 90 minutes later.", "fc": ["Intent recognition trained on formal clinical language only", "Escalation relied on keyword matching rather than semantic understanding", "No human escalation fallback within the 30-minute session window"], "lrn": "Mental health AI must use semantic intent recognition for crisis detection. Human escalation fallback must be available within defined windows.", "tg": ["Mental health", "Crisis escalation"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "7", "dname": "7 AI System Safety, Failures and Limitations", "out": null}, {"id": "UKHAI-2026-0031", "dt": "14 Feb 2026", "sv": "Moderate harm", "sc": "bd-m", "tp": "Clinical decision support", "se": "Secondary care \u2014 elective", "rg": "London (anon)", "ti": "AI prior authorisation denied knee replacement on incomplete data \u2014 9-week delay before override", "su": "Tool denied total knee replacement based on structured data only, missing 18 months of physiotherapy records and Oxford Knee Score 11/48 held in free text. Denial stood 9 weeks until consultant escalation.", "fc": ["AI accessed structured data only; free text not processed", "No automatic escalation when Oxford Knee Score fell below threshold", "Override accessible to specialist consultant only"], "lrn": "AI prior authorisation tools relying on structured data alone are insufficient for complex elective decisions. Override pathways must be accessible to GPs and patients.", "tg": ["Prior authorisation", "Elective care"], "entity": "AI + Human", "intent": "Unintentional", "timing": "Post-deployment", "domain": "6", "dname": "6 Socioeconomic and Environmental", "out": null}, {"id": "UKHAI-2026-0044", "dt": "03 Mar 2026", "sv": "No harm", "sc": "bd-z", "tp": "Virtual ward / remote monitoring", "se": "Secondary care \u2014 community", "rg": "East of England (anon)", "ti": "Predictive deterioration model: 23 false-positive alerts in 48 hours drove alert fatigue and reduced review frequency", "su": "No genuine deterioration across 23 alerts. Team reduced review frequency. No harm. Model had not been recalibrated following a recent medication change.", "fc": ["No clinician-accessible mechanism to adjust alert thresholds", "Medication change not reflected in model baseline", "No automated suppression of repeated identical alerts"], "lrn": "Virtual ward AI must support clinician-accessible threshold adjustment with audit trail. Medication changes must trigger automatic recalibration review.", "tg": ["Alert fatigue", "Calibration"], "entity": "AI", "intent": "Unintentional", "timing": "Post-deployment", "domain": "5", "dname": "5 Human-Computer Interaction (alert fatigue)", "out": null}];
 var PRODS=[{"n": "ClinDecide Pro", "tp": "Clinical decision support", "mf": "HealthLogic Systems Ltd", "c": 4, "s": "sn", "sl": "Safety notice", "mhra": "ok"}, {"n": "ScribeAI NHS Edition", "tp": "NLP / ambient scribe", "mf": "VoiceHealth Ltd", "c": 3, "s": "sn", "sl": "Safety notice", "mhra": "ok"}, {"n": "RiskSight MH", "tp": "Risk stratification", "mf": "MindMetrics UK Ltd", "c": 2, "s": "sn", "sl": "Safety notice", "mhra": "ok"}, {"n": "VisionAssist Mammography", "tp": "Diagnostic imaging AI", "mf": "RadiClear Medical", "c": 2, "s": "sn", "sl": "Safety notice", "mhra": "ok"}, {"n": "RetinaCheck AI", "tp": "Diagnostic imaging AI", "mf": "SightSystems UK", "c": 2, "s": "sn", "sl": "Safety notice", "mhra": "ok"}, {"n": "WardWatch Pro", "tp": "Virtual ward / remote monitoring", "mf": "RemoteCare Systems", "c": 2, "s": "sm", "sl": "Active monitoring", "mhra": "ok"}, {"n": "TriageFirst", "tp": "Clinical decision support", "mf": "EmergeTech UK", "c": 2, "s": "sm", "sl": "Active monitoring", "mhra": "warn"}, {"n": "SummarisePro", "tp": "NLP / ambient scribe", "mf": "ClinicalAI Group", "c": 2, "s": "sm", "sl": "Active monitoring", "mhra": "warn"}, {"n": "MindCompanion", "tp": "Mental health / wellbeing app", "mf": "CalmTech Ltd", "c": 1, "s": "sr", "sl": "Under review", "mhra": "ok"}, {"n": "SafeScript AI", "tp": "Prescribing / EPMA", "mf": "PharmAI Ltd", "c": 1, "s": "sn", "sl": "Safety notice", "mhra": "ok"}];
 var ALTS=[{"id": "ALERT-2026-003", "dt": "15 May 2026", "sv": "High", "sc": "ah", "act": true, "ti": "Mandatory equity audit \u2014 AI risk stratification in mental health", "su": "Three incidents of demographic bias in AI risk stratification tools. All NHS trusts using these tools in mental health must complete an equity audit stratified by ethnicity, age, and deprivation index.", "ac": "Complete equity audit and submit findings to this registry by 30 Jun 2026. Suspend tool use where disparities exceed 20% between demographic groups until audit is complete.", "dl": "30 Jun 2026 \u2014 Active", "rel": ["UKHAI-2025-0201"]}, {"id": "ALERT-2026-001", "dt": "12 Jan 2026", "sv": "High", "sc": "ah", "act": false, "ti": "Mandatory active verification \u2014 AI-generated allergy and medication fields", "su": "Multiple incidents of AI-generated allergy status countersigned without active verification. All trusts using ambient scribe or AI summary tools must implement mandatory active-confirmation workflows.", "ac": "Implement mandatory active-confirmation step for allergy fields before record commit. Action period closed.", "dl": "28 Feb 2026 \u2014 Closed", "rel": ["UKHAI-2025-0134", "UKHAI-2025-0299"]}, {"id": "ALERT-2025-009", "dt": "14 Oct 2025", "sv": "Medium", "sc": "am", "act": false, "ti": "Alert threshold review \u2014 virtual ward AI deterioration models", "su": "Reports of excessive false-positive alerting causing alert fatigue. Trusts should review threshold configurations and confirm a clinician-accessible recalibration pathway is in place.", "ac": "Review alert thresholds. Confirm review completion via LFPSE.", "dl": "Advisory only", "rel": ["UKHAI-2026-0044"]}, {"id": "ALERT-2025-006", "dt": "22 Jul 2025", "sv": "High", "sc": "ah", "act": false, "ti": "Mandatory second-reader review \u2014 AI-concurred borderline mammography findings", "su": "Severe harm: malignant lesion missed by both AI and primary radiologist. All breast screening programmes must implement mandatory second-reader for AI-concurred borderline cases.", "ac": "Implement mandatory second-reader for AI-concurred borderline findings. Action period closed.", "dl": "30 Sep 2025 \u2014 Closed", "rel": ["UKHAI-2025-0267"]}, {"id": "ALERT-2025-002", "dt": "03 Mar 2025", "sv": "Low", "sc": "al", "act": false, "ti": "Knowledge base currency check \u2014 AI drug interaction modules in EPMA", "su": "Trusts should verify that EPMA AI drug interaction knowledge base update cycles are documented and post-marketing data is incorporated within 30 days of regulatory publication.", "ac": "Document update interval in clinical safety case.", "dl": "Advisory only", "rel": ["UKHAI-2025-0112"]}];
 var TRUSTS=[{"n":"Northvale Integrated Care Board","rg":"Midlands","lead":"yes","lname":"Dr A. Osei, CCIO","r":12},{"n":"Westbridge University NHS Foundation Trust","rg":"London","lead":"yes","lname":"S. Kapoor, Clinical Safety Officer","r":8},{"n":"Mereford University NHS Foundation Trust","rg":"North West","lead":"yes","lname":"Dr R. Hasan, CNIO","r":11},{"n":"Penrose Health NHS Foundation Trust","rg":"South West","lead":"part","lname":"Appointment in progress (Q3 2026)","r":4},{"n":"Ashdown Healthcare University NHS Foundation Trust","rg":"South of England","lead":"yes","lname":"Digital Safety Lead (named)","r":7},{"n":"Caldervale University Health Board","rg":"Wales","lead":"part","lname":"Interim lead pending substantive appointment","r":5},{"n":"Grampian & Strathmore NHS Board","rg":"Scotland","lead":"no","lname":"","r":2},{"n":"Trentside University Hospitals NHS Trust","rg":"Midlands","lead":"no","lname":"","r":3},{"n":"Fenland & Coastal NHS Foundation Trust","rg":"East of England","lead":"yes","lname":"R. Brennan, Digital Governance Lead","r":6},{"n":"Downlands Partnership NHS Foundation Trust","rg":"South East","lead":"no","lname":"","r":2},{"n":"Mersey Gateway Integrated Care Board","rg":"North West","lead":"part","lname":"Procurement for role underway","r":4},{"n":"Dalesworth & Moorside NHS Foundation Trust","rg":"North East","lead":"yes","lname":"Dr M. Ibrahim, Clinical Informatics Lead","r":9}];
 
 var GOV=[
-  {num:"I",t:"Purpose",b:"To create a shared, navigable evidence base that clinical safety authors, procurement leads, CNIO and CCIO teams, regulators, and patients can consult when assessing the real-world safety profile of healthcare AI tools. Pre-deployment hazard analyses conducted without post-deployment harm evidence represent a structural patient safety risk. The WHO European Region study (Adib et al., 2026) confirms legal uncertainty and inadequate public engagement are the top barriers across the region &mdash; this registry addresses both."},
-  {num:"II",t:"One-tap reporting principle",b:"The clinician’s quiet calculation &mdash; flagging a near miss costs time with no visible benefit &mdash; is a structural barrier. WHO data confirms only 22% of European Member States consulted the public on AI decisions. This registry is designed for the end of a busy surgery: a minimal report requires only two fields. Full details are optional. Based on Luke Kellaway’s analysis: 5 Yellow Card reports across 15M+ AVT consultations is a measurement failure, not a safety record."},
-  {num:"III",t:"Classification using the MIT AI Risk Repository",b:"Each incident is classified against the MIT Causal Taxonomy (Entity · Intent · Timing) and the MIT Domain Taxonomy (7 domains, 24 subdomains). This grounds the registry in peer-reviewed academic infrastructure and gives clinical safety officers a shared vocabulary for DCB0129 hazard analysis. airisk.mit.edu"},
-  {num:"IV",t:"WHO alignment and the automation bias risk",b:"The WHO European Region study (2026) explicitly names automation bias and skills degradation as core clinical risks from AI overreliance. The WHO identifies that clinicians who over-rely on AI tools risk eroding their own clinical judgment over time, particularly if not supported by structured competency-based training. This registry’s taxonomy captures both — automation bias incidents are classified under MIT Domain 5 (Human-Computer Interaction)."},
+  {num:"I",t:"Purpose",b:"To create a shared, navigable evidence base that clinical safety authors, procurement leads, Chief Nursing Information Officer (CNIO) and Chief Clinical Information Officer (CCIO) teams, regulators, and patients can consult when assessing the real-world safety profile of healthcare AI tools. Pre-deployment hazard analyses conducted without post-deployment harm evidence represent a structural patient safety risk."},
+  {num:"II",t:"One-tap reporting principle",b:"The clinician’s quiet calculation &mdash; flagging a near miss costs time with no visible benefit &mdash; is a structural barrier. This registry is designed for the end of a busy surgery: a minimal report requires only two fields. Full details are optional. Based on Luke Kellaway’s analysis: 5 Yellow Card reports across 15M+ AVT consultations is a measurement failure, not a safety record."},
+  {num:"III",t:"Classification using the MIT AI Risk Repository",b:"Each incident is classified against the MIT Causal Taxonomy (Entity · Intent · Timing) and the MIT Domain Taxonomy (7 domains, 24 subdomains). This grounds the registry in peer-reviewed academic infrastructure and gives Clinical Safety Officers (CSO) a shared vocabulary for DCB0129 hazard analysis (DCB0129 is the NHS clinical risk management standard for digital health system manufacturers). airisk.mit.edu"},
+  {num:"IV",t:"Automation bias and skills degradation",b:"Automation bias and skills degradation are well-recognised clinical risks of AI overreliance: clinicians who lean too heavily on AI outputs can erode their own clinical judgment over time, particularly without structured, competency-based training. This registry’s taxonomy captures both — automation bias incidents are classified under MIT Domain 5 (Human-Computer Interaction)."},
   {num:"V",t:"Scope",b:"Accepts: (a) patient harms where AI was a direct or proximate cause; (b) near misses prevented by clinical vigilance; (c) systemic risks not yet linked to a specific harm event. Reports accepted from clinicians, digital leads, patient safety officers, and patients or carers. Vendor quarterly reports accepted under contractual data-sharing frameworks."},
-  {num:"VI",t:"Governance",b:"All submissions reviewed by an independent clinical safety panel before publication. Identifiable information removed before display. Each report assigned a UKHAI reference number. Panel includes: a registered mental health nurse, a DCB0129-qualified clinical safety officer, a lay patient representative, and an independent clinical informaticist. Reports that lead to safety alerts or product updates are linked back to the originating incident — closing the loop for the reporting clinician."},
-  {num:"VII",t:"Relationship to existing systems",b:"Does not replace NHS England LFPSE, MHRA Yellow Card, or manufacturer post-market surveillance under the Medical Devices Regulations 2025. MHRA product registration status cross-referenced in product directory. Supports HSSIB Safety observation O/2026/087 on national sharing of ePMA safety learning. Aligned with the WHO European Region Digital Health Action Plan 2023–2030."},
-  {num:"VIII",t:"Accessibility",b:"Designed to meet the NHS Accessible Information Standard (DAPB1605) and WCAG 2.1 AA. All text meets minimum 4.5:1 contrast ratio. Colour is never used as the sole differentiator of status or severity — text labels, symbols, and borders are used alongside colour. Body text is 14–15px with line-height 1.65–1.75. Focus states are visible throughout. All form elements have associated labels. Reduced motion preferences are respected."},
+  {num:"VI",t:"Governance",b:"All submissions reviewed by an independent clinical safety panel before publication. Identifiable information removed before display. Each report assigned a UKHAI reference number. Panel includes: a registered mental health nurse, a DCB0129-qualified Clinical Safety Officer, a lay patient representative, and an independent clinical informaticist. Reports that lead to safety alerts or product updates are linked back to the originating incident — closing the loop for the reporting clinician."},
+  {num:"VII",t:"Relationship to existing systems",b:"Does not replace NHS England LFPSE (Learn From Patient Safety Events), the MHRA (Medicines and Healthcare products Regulatory Agency) Yellow Card scheme, or manufacturer post-market surveillance under the Medical Devices Regulations 2025. MHRA product registration status cross-referenced in product directory. Supports HSSIB (Health Services Safety Investigations Body) Safety observation O/2026/087 on national sharing of ePMA safety learning."},
+  {num:"VIII",t:"Accessibility",b:"Designed to meet the NHS Accessible Information Standard (DAPB1605) and WCAG 2.1 AA (Web Content Accessibility Guidelines, level AA). All text meets minimum 4.5:1 contrast ratio. Colour is never used as the sole differentiator of status or severity — text labels, symbols, and borders are used alongside colour. Body text is 14–15px with line-height 1.65–1.75. Focus states are visible throughout. All form elements have associated labels. Reduced motion preferences are respected."},
 ];
 
 var DOM=[
@@ -688,16 +605,17 @@ window.addEventListener('DOMContentLoaded',function(){
   },250);
 });
 
-function IC(inc){
+function IC(inc,pfx){
   var id=inc.id;
+  var domId=(pfx||'')+id;
   return '<article class="inc" data-ti="'+inc.ti.toLowerCase()+'" data-sv="'+inc.sv+'" data-tp="'+inc.tp+'" data-dom="'+inc.domain+'" data-tg="'+inc.tg.join(' ').toLowerCase()+'">'
     +'<div class="imeta"><span class="iid">'+id+'</span><span class="isep">&middot;</span><span class="idt">'+inc.dt+'</span><span class="isep">&middot;</span><span class="badge '+inc.sc+'">'+inc.sv+'</span></div>'
     +'<h3 class="ititle">'+inc.ti+'</h3>'
     +'<div class="ifoot"><div class="tags"><span class="chip">'+inc.tp+'</span><span class="chip">'+inc.se+'</span><span class="chip">'+inc.rg+'</span>'
     +inc.tg.map(function(tg){return '<span class="tag">'+tg+'</span>';}).join('')
     +(inc.out?'<span class="otag">&#10003; Outcome published</span>':'')
-    +'</div><button type="button" class="xb" id="xb-'+id+'" data-incid="'+id+'" onclick="XD(this.dataset.incid)" aria-expanded="false">Read more</button></div>'
-    +'<div class="det" id="dt-'+id+'"><div class="det-in"><div class="det-body">'
+    +'</div><button type="button" class="xb" id="xb-'+domId+'" data-incid="'+domId+'" onclick="XD(this.dataset.incid)" aria-expanded="false">Read more</button></div>'
+    +'<div class="det" id="dt-'+domId+'"><div class="det-in"><div class="det-body">'
     +'<div class="taxo"><div class="taxo-g">'
     +'<div><div class="dl">Entity</div><div class="tv">'+inc.entity+'</div></div>'
     +'<div><div class="dl">Intent</div><div class="tv">'+inc.intent+'</div></div>'
@@ -779,12 +697,13 @@ function bChart(id,data,mx){
   var el=document.getElementById(id);if(!el)return;
   data.forEach(function(d,i){
     var col=document.createElement('div');col.className='bc';
+    var val=document.createElement('span');val.className='bv';val.textContent=d.v;
     var fill=document.createElement('div');fill.className='bf';
-    fill.style.height=Math.round(d.v/mx*100)+'%';
+    fill.style.height=Math.round(d.v/mx*85)+'%';
     fill.style.animationDelay=(i*28)+'ms';
     fill.title=d.l+': '+d.v;
     var lbl=document.createElement('span');lbl.className='bl';lbl.setAttribute('aria-hidden','true');lbl.textContent=d.l;
-    col.appendChild(fill);col.appendChild(lbl);el.appendChild(col);
+    col.appendChild(val);col.appendChild(fill);col.appendChild(lbl);el.appendChild(col);
   });
 }
 
@@ -797,7 +716,7 @@ function hChart(id,data,mx){
 }
 
 /* Render */
-document.getElementById('d-inc').innerHTML=INC.slice(0,3).map(IC).join('');
+document.getElementById('d-inc').innerHTML=INC.slice(0,3).map(function(i){return IC(i,'d-');}).join('');
 document.getElementById('bi').innerHTML=INC.map(IC).join('');
 
 document.getElementById('pl').innerHTML=PRODS.map(function(p){
@@ -864,8 +783,8 @@ var TV=[8,11,14,9,17,22,19,28,31,26,33,24,38,41,35];
 var TL=['J','F','M','A','M','J','J','A','S','O','N','D','J','F','M'];
 bChart('ch-tr',TV.map(function(v,i){return{l:TL[i],v:v};}),Math.max.apply(null,TV));
 bChart('ch-q',[{l:'Q1 25',v:33},{l:'Q2 25',v:48},{l:'Q3 25',v:78},{l:'Q4 25',v:83},{l:'Q1 26',v:114}],114);
-hChart('ch-tp',[{l:'Decision support',v:87},{l:'Imaging AI',v:64},{l:'Ambient scribe',v:53},{l:'Risk strat.',v:41},{l:'Mental health apps',v:38},{l:'Virtual ward',v:29},{l:'EPMA',v:18}],87);
-hChart('ch-set',[{l:'Secondary acute',v:98},{l:'Community mental health',v:67},{l:'Primary care',v:54},{l:'Screening',v:41},{l:'Virtual ward',v:38},{l:'Accident & Emergency',v:33},{l:'Inpatient mental health',v:25}],98);
+hChart('ch-tp',[{l:'Decision support',v:87},{l:'Imaging AI',v:64},{l:'Ambient scribe',v:53},{l:'Risk stratification',v:41},{l:'Mental health apps',v:38},{l:'Virtual ward',v:29},{l:'Prescribing (EPMA)',v:18}],87);
+hChart('ch-set',[{l:'Secondary acute',v:98},{l:'Community mental health',v:67},{l:'Primary care',v:54},{l:'Screening',v:41},{l:'Virtual ward',v:38},{l:'A&E',v:33},{l:'Inpatient mental health',v:25}],98);
 hChart('ch-fac',[{l:'Data quality / completeness',v:89},{l:'Inadequate human oversight',v:73},{l:'Workflow integration failure',v:61},{l:'Training data bias',v:54},{l:'Alert / output design',v:47},{l:'Knowledge base currency',v:38},{l:'Human-AI agreement bias',v:29}],89);
 </script>
 </body>
