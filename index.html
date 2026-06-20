@@ -423,7 +423,7 @@ footer a{color:#fff;text-decoration:underline;text-underline-offset:2px;text-dec
     <input id="si" type="search" placeholder="Search title or tags&hellip;" oninput="FI()">
     <select id="sv2" onchange="FI()"><option value="">All severities</option><option>Death</option><option>Severe harm</option><option>Moderate harm</option><option>Low harm</option><option>Near miss</option><option>No harm</option></select>
     <select id="st3" onchange="FI()"><option value="">All AI types</option><option>Clinical decision support</option><option value="NLP / ambient scribe">Ambient scribe (natural language processing tool)</option><option>Risk stratification</option><option>Diagnostic imaging AI</option><option value="Mental health / wellbeing app">Mental health and wellbeing app</option><option value="Virtual ward / remote monitoring">Virtual ward and remote monitoring</option><option value="Prescribing / EPMA">Prescribing (Electronic Prescribing - EPMA)</option></select>
-    <select id="sdom" onchange="FI()"><option value="">All MIT domains</option><option value="1">1. Discrimination</option><option value="3">3. Misinformation</option><option value="5">5. Human-Computer Interaction</option><option value="6">6. Socioeconomic</option><option value="7">7. AI System Safety</option></select>
+    <select id="sdom" onchange="FI()"><option value="">All MIT domains</option><option value="1">1. Discrimination &amp; Toxicity</option><option value="2">2. Privacy &amp; Security</option><option value="3">3. Misinformation</option><option value="4">4. Malicious Actors &amp; Misuse</option><option value="5">5. Human-Computer Interaction</option><option value="6">6. Socioeconomic &amp; Environmental</option><option value="7">7. AI System Safety</option></select>
   </div>
   <div class="rcnt" id="bco">12 incidents</div>
   <div id="bi" class="stag"></div>
@@ -560,7 +560,9 @@ var GOV=[
 
 var DOM=[
   {num:"1",name:"Discrimination & Toxicity",count:2},
+  {num:"2",name:"Privacy & Security",count:0},
   {num:"3",name:"Misinformation",count:3},
+  {num:"4",name:"Malicious Actors & Misuse",count:0},
   {num:"5",name:"Human-Computer Interaction",count:2},
   {num:"6",name:"Socioeconomic & Environmental",count:1},
   {num:"7",name:"AI System Safety, Failures & Limitations",count:4},
